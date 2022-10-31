@@ -1,8 +1,25 @@
 {
     "cSpell.words": [
+        "autopep",
+        "conda",
+        "CUDA",
+        "dataframe",
+        "FULLSCREEN",
+        "getdata",
+        "iloc",
         "imshow",
         "imwrite",
+        "iterrows",
+        "keras",
+        "levelname",
         "LPDR",
-        "ndarray"
+        "matplotlib",
+        "ndarray",
+        "numpy",
+        "scikit",
+        "torchaudio",
+        "torchvision",
+        "xfile",
+        "Yolo"
     ]
 }

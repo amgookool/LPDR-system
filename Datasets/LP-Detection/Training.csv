@@ -1,0 +1,9 @@
+filepath,filename,width,height,class,xmin,ymin,xmax,ymax
+C:\Users\amgoo\Documents\LPDR-system\Datasets\LP-Detection\Training\05f945f6-Car-1.JPG,05f945f6-Car-1.JPG,4032,3024,License-Plate,1540,1961,2141,2123
+C:\Users\amgoo\Documents\LPDR-system\Datasets\LP-Detection\Training\07376b01-Car-7.JPG,07376b01-Car-7.JPG,4032,2268,License-Plate,1513,1302,2116,1440
+C:\Users\amgoo\Documents\LPDR-system\Datasets\LP-Detection\Training\78299cdf-Car-5.JPG,78299cdf-Car-5.JPG,4032,2268,License-Plate,1724,1453,2297,1589
+C:\Users\amgoo\Documents\LPDR-system\Datasets\LP-Detection\Training\78c14829-Car-3.JPG,78c14829-Car-3.JPG,4032,3024,License-Plate,1429,1598,2158,1766
+C:\Users\amgoo\Documents\LPDR-system\Datasets\LP-Detection\Training\798d3024-Car-2.JPG,798d3024-Car-2.JPG,4032,3024,License-Plate,1725,1832,2295,1965
+C:\Users\amgoo\Documents\LPDR-system\Datasets\LP-Detection\Training\9d393dfc-Car-0.JPG,9d393dfc-Car-0.JPG,4032,3024,License-Plate,1456,2109,2077,2243
+C:\Users\amgoo\Documents\LPDR-system\Datasets\LP-Detection\Training\c82c8cde-Car-4.JPG,c82c8cde-Car-4.JPG,4032,3024,License-Plate,1344,1706,2340,1919
+C:\Users\amgoo\Documents\LPDR-system\Datasets\LP-Detection\Training\d09e623c-Car-6.JPG,d09e623c-Car-6.JPG,4032,2268,License-Plate,1430,1224,2160,1386

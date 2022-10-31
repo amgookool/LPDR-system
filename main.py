@@ -3,7 +3,7 @@ from Segmentation import Segmentation as segmentation
 from Recognition import Recognition as recognition
 from Utilities import Utilities as utils
 import cv2, sys
-
+import tensorflow as tf
 
 
 if __name__ =="__main__":
