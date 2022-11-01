@@ -12,19 +12,6 @@ warnings.filterwarnings("ignore")
 work_dir = os.path.abspath(os.getcwd() + r"\Datasets\LP-Detection")
 
 
-def create_csv(save_directory: str, xml_dataframe: pd.DataFrame):
-    """create_csv 
-    This function is used to generate a csv file containing xml data
-
-    Args:
-        save_directory (str): The directory where the csv file will be saved
-        filename (str): The name of the CSV file
-        xml_dataframe (pd.DataFrame): The pandas Dataframe being converted to CSV file
-    """
-    file = save_directory + ".csv"
-    xml_dataframe.to_csv(file, index=0)
-
-
 def xml_to_csv_format(path: str) -> pd.DataFrame:
     """xml_to_csv_format 
     This function will convert the xml file to a pandas dataframe.
@@ -54,7 +41,18 @@ def xml_to_csv_format(path: str) -> pd.DataFrame:
     column_name = ['filepath', 'filename', 'width', 'height',
                    'class', 'xmin', 'ymin', 'xmax', 'ymax']
     xml_df = pd.DataFrame(xml_files, columns=column_name)
+    xml_df.to_csv(path + ".csv", index=0)
     return xml_df
+
+
+def xml_to_txt_format(path : str):
+    xml_files = list()
+    for xml_file in glob.glob(path + "/*.xml"):
+        tree = ET.parse(xml_file)
+        root = tree.getroot()
+        for member in root.findall('object'):
+            filename = root.find("filename").text
+            # width, height, depth
 
 
 def rename_file(directory: str):
@@ -149,5 +147,5 @@ if __name__ == "__main__":
     xml_df: pd.DataFrame = xml_to_csv_format(training_directory)
     # image_paths: list = [x for x in xml_df.get("filepath")]
     # xml_paths = [a[:-3] + "xml" for a in xml_df.get("filepath")]
-    data = image_bbox_resize(xml_df=xml_df)
-    print(data['Label-Data'])
+    # data = image_bbox_resize(xml_df=xml_df)
+    # print(data['Label-Data'])

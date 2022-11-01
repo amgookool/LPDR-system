@@ -1,9 +1,7 @@
 import logging as log
+import time, os, re
 import threading
-import time
 import cv2
-import os
-import re
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -58,6 +56,8 @@ Saving to Directory:
             raise FileExistsError
     except FileExistsError as err:
         print(f"The file already exists\n {err}")
+        rename_file(file=file, store_directory=store_directory,
+                    filename_prefix=filename_prefix, count=count+1)
         return
 
 
@@ -101,18 +101,21 @@ def sort_dataset(raw_directory: str):
         raw_directory (str): The directory that has the raw images
     """
     global detect_count, segment_count
+    length = width = 350
     for file in os.listdir(os.chdir(raw_directory)):
         filepath = os.path.abspath(file)
 
-        def show_image():
+        def show_image(length: int, width: int):
             image = cv2.imread(filepath, cv2.IMREAD_COLOR)
-            cv2.namedWindow(f"{file}", cv2.WINDOW_NORMAL)
-            cv2.imshow(f"{file}", image)
+            cv2.namedWindow(f"{file}", cv2.WINDOW_AUTOSIZE)
+            img_ = cv2.resize(image,(length,width))
+            cv2.imshow(f"{file}", img_)
 
             if cv2.waitKey(0) & 0xFF == ord('q'):
                 cv2.destroyWindow(f"{file}")
 
-        thread_image = threading.Thread(target=show_image)
+        thread_image = threading.Thread(target=show_image, kwargs={
+                                        "length": length, "width": width})
         thread_image.start()
 
         store_directory, prefix_filename = move_file_to_folder(file)
@@ -129,10 +132,10 @@ def sort_dataset(raw_directory: str):
 
 if __name__ == "__main__":
     start_time = time.time()
-    # sort_dataset(_exec)
-    time.sleep(5)
+    sort_dataset(_exec)
     end_time = time.time()
-    def get_finalTime (start_time:float,end_time:float):
+
+    def get_finalTime(start_time: float, end_time: float):
         return end_time - start_time
 
     print(f"Execution time: {get_finalTime(start_time,end_time)} seconds")
