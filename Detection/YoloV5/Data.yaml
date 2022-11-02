@@ -1,0 +1,4 @@
+train: data_images/train
+validation: data_images/test
+num_class: 1
+names: ["License-Plate"]

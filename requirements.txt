@@ -1,8 +1,9 @@
-autopep8
+# autopep8
+black
 pandas
 numpy
 matplotlib
 opencv-python
-tensorflow
+# tensorflow
 tensorflow-cpu
 # tensorflow-gpu
