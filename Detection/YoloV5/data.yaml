@@ -1,4 +1,4 @@
 train: data_images/train
-validation: data_images/test
-num_class: 1
+val: data_images/test
+nc: 0
 names: ["License-Plate"]

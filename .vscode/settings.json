@@ -23,5 +23,6 @@
         "torchvision",
         "xfile",
         "Yolo"
-    ]
+    ],
+    "python.formatting.provider": "black"
 }
