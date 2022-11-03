@@ -9,12 +9,12 @@ warnings.filterwarnings("ignore")
 work_dir = os.path.abspath(os.getcwd() + r"\Raw-Dataset")
 
 RawImages_directory: str = os.path.join(work_dir + r"\Raw-images")
-Batch1_directory: str = os.path.join(RawImages_directory + r"\Batch1")
+Batch_directory: str = os.path.join(RawImages_directory + r"\Batch")
 
-detect_count = 1
-segment_count = 1
+detect_count = 89
+segment_count = 13
 
-_exec = Batch1_directory
+_exec = Batch_directory
 
 log.basicConfig(filename=work_dir+r"\sorted-dataset.log",
                 level=log.INFO, format='%(asctime)s : %(levelname)s : %(message)s')

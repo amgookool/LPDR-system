@@ -1,7 +1,700 @@
-2022-10-31 09:44:24,705 : INFO : 
-File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4283.jpg
-Renaming IMG_4283.jpg --> Vehicle-1.jpg
+2022-11-02 09:40:47,790 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_144221.jpg
+Renaming 20221031_144221.jpg --> Vehicle-1.jpg
 Saving to Directory:
 C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:41:04,797 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_144236.jpg
+Renaming 20221031_144236.jpg --> Vehicle-2.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:41:19,239 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_144239.jpg
+Renaming 20221031_144239.jpg --> Vehicle-3.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:41:31,903 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_144444.jpg
+Renaming 20221031_144444.jpg --> Vehicle-4.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:41:46,883 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_144446.jpg
+Renaming 20221031_144446.jpg --> Vehicle-5.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:41:54,086 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_144450.jpg
+Renaming 20221031_144450.jpg --> Vehicle-6.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:42:15,892 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_144603.jpg
+Renaming 20221031_144603.jpg --> Vehicle-7.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:42:37,248 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145013.jpg
+Renaming 20221031_145013.jpg --> Vehicle-8.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:42:42,261 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145020.jpg
+Renaming 20221031_145020.jpg --> Vehicle-9.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:42:48,560 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145022.jpg
+Renaming 20221031_145022.jpg --> Vehicle-10.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:42:56,020 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145100.jpg
+Renaming 20221031_145100.jpg --> Vehicle-11.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:43:15,966 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145143.jpg
+Renaming 20221031_145143.jpg --> Vehicle-12.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:43:24,031 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145154.jpg
+Renaming 20221031_145154.jpg --> Vehicle-13.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:43:45,605 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145208.jpg
+Renaming 20221031_145208.jpg --> Vehicle-14.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:43:50,549 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145226.jpg
+Renaming 20221031_145226.jpg --> Vehicle-15.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:43:56,017 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145238.jpg
+Renaming 20221031_145238.jpg --> Vehicle-16.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:44:03,085 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145251.jpg
+Renaming 20221031_145251.jpg --> Vehicle-17.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:44:09,498 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145309.jpg
+Renaming 20221031_145309.jpg --> Vehicle-18.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:44:15,349 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145354.jpg
+Renaming 20221031_145354.jpg --> Vehicle-19.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:44:23,295 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145405.jpg
+Renaming 20221031_145405.jpg --> Vehicle-20.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:44:38,231 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145408.jpg
+Renaming 20221031_145408.jpg --> Vehicle-21.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:45:13,965 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145422.jpg
+Renaming 20221031_145422.jpg --> Vehicle-22.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:45:18,276 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145433.jpg
+Renaming 20221031_145433.jpg --> Vehicle-23.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:45:22,109 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145449.jpg
+Renaming 20221031_145449.jpg --> Vehicle-24.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:45:26,251 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145519.jpg
+Renaming 20221031_145519.jpg --> Vehicle-25.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:45:30,667 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145523.jpg
+Renaming 20221031_145523.jpg --> Vehicle-26.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:45:35,520 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145534.jpg
+Renaming 20221031_145534.jpg --> Vehicle-27.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:45:44,307 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145540.jpg
+Renaming 20221031_145540.jpg --> Vehicle-28.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:45:57,652 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145632.jpg
+Renaming 20221031_145632.jpg --> Vehicle-29.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:46:04,005 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145641.jpg
+Renaming 20221031_145641.jpg --> Vehicle-30.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:46:15,205 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145725.jpg
+Renaming 20221031_145725.jpg --> Vehicle-31.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:46:19,206 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145731.jpg
+Renaming 20221031_145731.jpg --> Vehicle-32.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:46:59,297 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145837.jpg
+Renaming 20221031_145837.jpg --> Vehicle-33.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:47:04,802 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145850.jpg
+Renaming 20221031_145850.jpg --> Vehicle-34.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:47:10,458 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\20221031_145852.jpg
+Renaming 20221031_145852.jpg --> Vehicle-35.jpg
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:47:15,536 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4283.JPG
+Renaming IMG_4283.JPG --> Vehicle-36.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:47:20,357 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4284.JPG
+Renaming IMG_4284.JPG --> Vehicle-37.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:47:24,448 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4285.JPG
+Renaming IMG_4285.JPG --> Vehicle-38.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:47:29,280 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4286.JPG
+Renaming IMG_4286.JPG --> Vehicle-39.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:47:39,278 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4287.JPG
+Renaming IMG_4287.JPG --> Vehicle-40.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:47:48,944 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4288.JPG
+Renaming IMG_4288.JPG --> Vehicle-41.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:47:52,026 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4293.JPG
+Renaming IMG_4293.JPG --> Vehicle-42.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:47:57,735 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4294.JPG
+Renaming IMG_4294.JPG --> LP-1.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:48:02,075 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4296.JPG
+Renaming IMG_4296.JPG --> LP-2.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:48:05,630 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4297.JPG
+Renaming IMG_4297.JPG --> LP-3.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:48:11,495 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4298.JPG
+Renaming IMG_4298.JPG --> LP-4.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:48:15,894 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4300.JPG
+Renaming IMG_4300.JPG --> LP-5.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:48:20,006 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4301.JPG
+Renaming IMG_4301.JPG --> LP-6.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:48:25,501 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4302.JPG
+Renaming IMG_4302.JPG --> LP-7.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:48:32,957 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4303.JPG
+Renaming IMG_4303.JPG --> Vehicle-43.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:48:41,431 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4304.JPG
+Renaming IMG_4304.JPG --> Vehicle-44.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:48:45,801 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4305.JPG
+Renaming IMG_4305.JPG --> Vehicle-45.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:48:51,634 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4306.JPG
+Renaming IMG_4306.JPG --> Vehicle-46.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:48:57,120 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4307.JPG
+Renaming IMG_4307.JPG --> Vehicle-47.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:49:04,383 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4308.JPG
+Renaming IMG_4308.JPG --> Vehicle-48.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:49:08,748 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4309.JPG
+Renaming IMG_4309.JPG --> Vehicle-49.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:49:14,105 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4310.JPG
+Renaming IMG_4310.JPG --> Vehicle-50.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:49:19,147 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4311.JPG
+Renaming IMG_4311.JPG --> Vehicle-51.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:49:24,039 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4312.JPG
+Renaming IMG_4312.JPG --> Vehicle-52.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:49:27,545 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4313.JPG
+Renaming IMG_4313.JPG --> Vehicle-53.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:50:09,539 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4314.JPG
+Renaming IMG_4314.JPG --> Vehicle-54.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:50:14,089 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4315.JPG
+Renaming IMG_4315.JPG --> Vehicle-55.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:50:17,234 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4316.JPG
+Renaming IMG_4316.JPG --> Vehicle-56.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:50:21,564 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4317.JPG
+Renaming IMG_4317.JPG --> LP-8.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:50:31,569 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4318.JPG
+Renaming IMG_4318.JPG --> Vehicle-57.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:50:36,950 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4319.JPG
+Renaming IMG_4319.JPG --> Vehicle-58.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:50:43,511 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4320.JPG
+Renaming IMG_4320.JPG --> Vehicle-59.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:50:47,572 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4321.JPG
+Renaming IMG_4321.JPG --> Vehicle-60.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:50:51,783 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4322.JPG
+Renaming IMG_4322.JPG --> Vehicle-61.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:50:59,240 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4323.JPG
+Renaming IMG_4323.JPG --> Vehicle-62.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:51:03,506 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4324.JPG
+Renaming IMG_4324.JPG --> Vehicle-63.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:51:08,952 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4325.JPG
+Renaming IMG_4325.JPG --> Vehicle-64.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:51:13,082 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4326.JPG
+Renaming IMG_4326.JPG --> Vehicle-65.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:51:17,404 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4327.JPG
+Renaming IMG_4327.JPG --> Vehicle-66.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:51:22,943 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4328.JPG
+Renaming IMG_4328.JPG --> Vehicle-67.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:51:55,771 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4329.JPG
+Renaming IMG_4329.JPG --> Vehicle-68.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:52:00,102 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4330.JPG
+Renaming IMG_4330.JPG --> Vehicle-69.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:52:09,086 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4331.JPG
+Renaming IMG_4331.JPG --> Vehicle-70.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:52:16,199 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4332.JPG
+Renaming IMG_4332.JPG --> Vehicle-71.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:52:23,809 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4333.JPG
+Renaming IMG_4333.JPG --> Vehicle-72.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:52:32,764 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4334.JPG
+Renaming IMG_4334.JPG --> Vehicle-73.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:52:37,199 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4335.JPG
+Renaming IMG_4335.JPG --> Vehicle-74.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:52:42,032 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4336.JPG
+Renaming IMG_4336.JPG --> Vehicle-75.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:52:48,658 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4337.JPG
+Renaming IMG_4337.JPG --> Vehicle-76.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:53:00,275 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4338.JPG
+Renaming IMG_4338.JPG --> Vehicle-77.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:53:14,631 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4339.JPG
+Renaming IMG_4339.JPG --> Vehicle-78.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:53:18,308 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4340.JPG
+Renaming IMG_4340.JPG --> Vehicle-79.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:53:23,849 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4341.JPG
+Renaming IMG_4341.JPG --> LP-9.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:53:28,014 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4342.JPG
+Renaming IMG_4342.JPG --> Vehicle-80.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:53:32,006 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4343.JPG
+Renaming IMG_4343.JPG --> Vehicle-81.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:53:39,103 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_4345.JPG
+Renaming IMG_4345.JPG --> Vehicle-82.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:53:44,933 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_E4283.JPG
+Renaming IMG_E4283.JPG --> Vehicle-83.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:53:58,278 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_E4284.JPG
+Renaming IMG_E4284.JPG --> Vehicle-84.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:54:02,668 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_E4285.JPG
+Renaming IMG_E4285.JPG --> Vehicle-85.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:54:07,163 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_E4286.JPG
+Renaming IMG_E4286.JPG --> Vehicle-86.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:54:24,322 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_E4287.JPG
+Renaming IMG_E4287.JPG --> Vehicle-87.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:54:29,458 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_E4288.JPG
+Renaming IMG_E4288.JPG --> Vehicle-88.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Detection
+
+
+2022-11-02 09:54:34,098 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_E4296.JPG
+Renaming IMG_E4296.JPG --> LP-10.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:54:41,086 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_E4297.JPG
+Renaming IMG_E4297.JPG --> LP-11.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
+
+
+2022-11-02 09:54:50,818 : INFO : 
+File Directory: C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Raw-images\Batch1\IMG_E4298.JPG
+Renaming IMG_E4298.JPG --> LP-12.JPG
+Saving to Directory:
+C:\Users\amgoo\Documents\LPDR-system\Raw-Dataset\Segmentation
 
 

@@ -1,5 +1,6 @@
 from keras_preprocessing.image import load_img, img_to_array
 import xml.etree.ElementTree as ET
+from operator import itemgetter
 import pandas as pd
 import numpy as np
 import glob
@@ -20,7 +21,7 @@ work_dir = os.path.abspath(os.getcwd() + r"\Datasets\LP-Detection")
 
 def read_xml_format(path_: str) -> pd.DataFrame:
     """read_xml_format
-    This function will readt the xml file and convert it into a pandas dataframe.
+    This function will read the xml file and convert it into a pandas dataframe.
 
     Args:
         path_ (str): The path of the directory containing xml files
@@ -33,7 +34,8 @@ def read_xml_format(path_: str) -> pd.DataFrame:
         tree = ET.parse(xml_file)
         root = tree.getroot()
         for member in root.findall("object"):
-            filepath = os.path.abspath(path_ + "\\" + root.find("filename").text)
+            filepath = os.path.abspath(
+                path_ + "\\" + root.find("filename").text)
             filename = root.find("filename").text
             img_size = {
                 "width": int(root.find("size")[0].text),
@@ -79,7 +81,7 @@ def read_xml_format(path_: str) -> pd.DataFrame:
     return df
 
 
-def verify_xml_annotations(path_ : str):
+def verify_vehicle_xml_annotations(path_: str):
     """verify_annotations This functions verifies that xml data generated on an image
 
     The function uses the xml data to draw the bounding boxes on the
@@ -88,27 +90,45 @@ def verify_xml_annotations(path_ : str):
         path_ (str): The path of the directory containing xml files 
     """
     data_df = read_xml_format(path_)
+    objects = list()
+    indexed_imgs = list()
+
     image_path = data_df.get("filepath")
-    # width = data_df.get("width")
-    # height = data_df.get("height")
+    filename = data_df.get("filename")
     xmin = data_df.get("xmin")
     ymin = data_df.get("ymin")
     xmax = data_df.get("xmax")
     ymax = data_df.get("ymax")
-    for _img_path, _xmin, _ymin, _xmax, _ymax in zip(
-        image_path, xmin, ymin, xmax, ymax
-    ):
-        # Image File
-        image: np.ndarray = cv2.imread(_img_path, cv2.IMREAD_COLOR)
 
-        # Bounding Box
-        blue_rgb = (205, 0, 0)  # BGR
-        cv2.rectangle(image, (_xmin, _ymin), (_xmax, _ymax), blue_rgb, 5)
+    for (_img_path, _fname, _xmin, _ymin, _xmax, _ymax) in zip(image_path, filename, xmin, ymin, xmax, ymax):
+        f_index = int(_fname.split(".")[0].split("-")[2])
 
-        # Showing image
-        cv2.namedWindow(f"{image_path}", cv2.WINDOW_NORMAL)
-        cv2.imshow(f"{image_path}", image)
+        if f_index not in indexed_imgs:
+            indexed_imgs.append(f_index)
+            object_ = {
+                "index": f_index,
+                "path": _img_path,
+                "filename": _fname,
+                "bboxs": [(_xmin, _ymin, _xmax, _ymax)]
+            }
+            objects.append(object_)
 
+        if f_index in indexed_imgs and (_xmin, _ymin, _xmax, _ymax) not in object_['bboxs']:
+            object_['bboxs'].append((_xmin, _ymin, _xmax, _ymax))
+
+    objects.sort(key=itemgetter("index"))
+    for o in objects:
+        image: np.ndarray = cv2.imread(o['path'], cv2.IMREAD_COLOR)
+
+        blue_bgr_scheme = (210, 0, 0)
+
+        for box in o['bboxs']:
+            cv2.rectangle(image, (box[0], box[1]),
+                          (box[2], box[3]), blue_bgr_scheme, 8)
+        
+        cv2.namedWindow(f"{o['filename']}", cv2.WINDOW_NORMAL)
+        cv2.imshow(f"{o['filename']}", image)
+        
         if cv2.waitKey(0) & 0xFF == ord("q"):
             cv2.destroyAllWindows()
 
@@ -123,19 +143,22 @@ def YOLO_txt_format(path_: str) -> pd.DataFrame:
         path_ (str): The path of the directory containing images and xml files
 
     Returns:
-        pd.DataFrame: A dataframe consiting of the required data for the YOLO algorithm
+        pd.DataFrame: A dataframe consisting of the required data for the YOLO algorithm
     """
     xml_df = read_xml_format(path_)
 
     # Preprocess Data for required ata for YOLO algorithm
     # Normalize the Data with respect to photo height and width
-    xml_df["x_center"] = (xml_df["xmin"] + xml_df["xmax"]) / (2 * xml_df["width"])
+    xml_df["x_center"] = (xml_df["xmin"] + xml_df["xmax"]
+                          ) / (2 * xml_df["width"])
 
-    xml_df["y_center"] = (xml_df["ymin"] + xml_df["ymax"]) / (2 * xml_df["height"])
+    xml_df["y_center"] = (xml_df["ymin"] + xml_df["ymax"]
+                          ) / (2 * xml_df["height"])
 
     xml_df["bbox_width"] = (xml_df["xmax"] - xml_df["xmin"]) / xml_df["width"]
 
-    xml_df["bbox_height"] = (xml_df["ymax"] - xml_df["ymin"]) / xml_df["height"]
+    xml_df["bbox_height"] = (
+        xml_df["ymax"] - xml_df["ymin"]) / xml_df["height"]
 
     # Slice Data for YOLO text file format
     data_values = xml_df[
@@ -157,14 +180,12 @@ def YOLO_txt_format(path_: str) -> pd.DataFrame:
     return xml_df
 
 
-
-
-
 def image_bbox_resize(
     xml_df: pd.DataFrame, img_target_size: tuple = (224, 224)
 ) -> dict:
     image_data = label_data = list()
-    bbox_df: pd.DataFrame = xml_df.get(["filepath", "xmin", "ymin", "xmax", "ymax"])
+    bbox_df: pd.DataFrame = xml_df.get(
+        ["filepath", "xmin", "ymin", "xmax", "ymax"])
     for index, data in bbox_df.iterrows():
         image_array: np.ndarray = cv2.imread(data["filepath"])
         height, width, depth = image_array.shape  # Height, Width, Depth
@@ -192,7 +213,10 @@ def image_bbox_resize(
 if __name__ == "__main__":
     testing_directory: str = os.path.join(work_dir + r"\Testing")
     training_directory: str = os.path.join(work_dir + r"\Training")
-    xml_df: pd.DataFrame = YOLO_txt_format(training_directory)
+    xml_df: pd.DataFrame = read_xml_format(training_directory)
+    verify_vehicle_xml_annotations(training_directory)
+    # xml_df.to_csv(training_directory + ".csv",index=0)
+    # Datasets\LP-Detection\Training\1e88349d-Vehicle-61.JPG
     # image_paths: list = [x for x in xml_df.get("filepath")]
     # xml_paths = [a[:-3] + "xml" for a in xml_df.get("filepath")]
     # data = image_bbox_resize(xml_df=xml_df)

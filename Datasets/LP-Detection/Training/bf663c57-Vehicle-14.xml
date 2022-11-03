@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+    <folder>images</folder>
+    <filename>bf663c57-Vehicle-14.jpg</filename>
+    <source>
+        <database>MyDatabase</database>
+        <annotation>COCO2017</annotation>
+        <image>flickr</image>
+        <flickrid>NULL</flickrid>
+        <annotator>1</annotator>
+    </source>
+    <owner>
+        <flickrid>NULL</flickrid>
+        <name>Label Studio</name>
+    </owner>
+    <size>
+        <width>4000</width>
+        <height>3000</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+        <name>License-Plate</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>2468</xmin>
+            <ymin>1534</ymin>
+            <xmax>2692</xmax>
+            <ymax>1695</ymax>
+        </bndbox>
+    </object>
+    <object>
+        <name>License-Plate</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>692</xmin>
+            <ymin>1307</ymin>
+            <xmax>758</xmax>
+            <ymax>1347</ymax>
+        </bndbox>
+    </object>
+</annotation>
