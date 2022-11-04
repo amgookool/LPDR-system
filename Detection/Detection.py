@@ -123,7 +123,7 @@ class YOLO_ALGO:
         }
 
         os.chdir(self.algorithm_dir)
-        path_ = os.path.abspath(weights_dir + r"\Model8\weights" + "\\" + weight_file )
+        path_ = os.path.abspath(weights_dir + r"\Model\weights" + "\\" + weight_file )
         
         export_formats = [saved_models[x] for x in formats]
 
