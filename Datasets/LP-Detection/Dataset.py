@@ -206,14 +206,14 @@ def image_bbox_resize(
 
 
 if __name__ == "__main__":
-    testing_directory: str = os.path.join(work_dir + r"\Testing")
-    training_directory: str = os.path.join(work_dir + r"\Training")
+    TrainTest_directory: str = os.path.join(work_dir + r"\Train-Test")
     # xml_df: pd.DataFrame = read_xml_format(training_directory)
     # verify_vehicle_xml_annotations(training_directory)
-    xml_df : pd.DataFrame = YOLO_txt_format(training_directory + r"\Batch1") 
+    xml_df : pd.DataFrame = YOLO_txt_format(TrainTest_directory) 
     
     
-    # xml_df.to_csv(training_directory + ".csv",index=0)
+    # xml_df.to_csv(TrainTest_directory + ".csv",index=0)
+    
     # Datasets\LP-Detection\Training\1e88349d-Vehicle-61.JPG
     # image_paths: list = [x for x in xml_df.get("filepath")]
     # xml_paths = [a[:-3] + "xml" for a in xml_df.get("filepath")]

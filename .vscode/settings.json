@@ -3,6 +3,7 @@
         "autopep",
         "bboxs",
         "conda",
+        "coreml",
         "CUDA",
         "dataframe",
         "FULLSCREEN",
@@ -18,11 +19,17 @@
         "matplotlib",
         "ndarray",
         "numpy",
+        "ONNX",
+        "openvino",
+        "pretrained",
         "scikit",
+        "tflite",
         "torchaudio",
+        "Torchscript",
         "torchvision",
         "xfile",
-        "Yolo"
+        "Yolo",
+        "yolov"
     ],
     "python.formatting.provider": "black"
 }

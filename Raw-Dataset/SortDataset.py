@@ -11,7 +11,7 @@ work_dir = os.path.abspath(os.getcwd() + r"\Raw-Dataset")
 RawImages_directory: str = os.path.join(work_dir + r"\Raw-images")
 Batch_directory: str = os.path.join(RawImages_directory + r"\Batch")
 
-detect_count = 89
+detect_count = 136
 segment_count = 13
 
 _exec = Batch_directory
@@ -101,7 +101,7 @@ def sort_dataset(raw_directory: str):
         raw_directory (str): The directory that has the raw images
     """
     global detect_count, segment_count
-    length = width = 350
+
     for file in os.listdir(os.chdir(raw_directory)):
         filepath = os.path.abspath(file)
 
@@ -114,11 +114,14 @@ def sort_dataset(raw_directory: str):
             if cv2.waitKey(0) & 0xFF == ord('q'):
                 cv2.destroyWindow(f"{file}")
 
-        thread_image = threading.Thread(target=show_image, kwargs={
-                                        "length": length, "width": width})
-        thread_image.start()
+        # thread_image = threading.Thread(target=show_image, kwargs={
+        #                                 "length": length, "width": width})
+        # thread_image.start()
 
-        store_directory, prefix_filename = move_file_to_folder(file)
+        # store_directory, prefix_filename = move_file_to_folder(file)
+
+        store_directory = os.path.join(work_dir + r"\Detection")
+        prefix_filename = "Vehicle-"
 
         if ("Vehicle") in prefix_filename:
             rename_file(file, store_directory, prefix_filename, detect_count)
