@@ -27,7 +27,7 @@ class YOLO_ALGO:
         file_pattern = r"\.JPG|\.png|\.PNG|\.jpg|\.txt"
 
         dataset_training_path = os.getcwd(
-        ) + r"\Datasets\LP-Detection\Training"
+        ) + r"\Datasets\LP-Detection\Train-Test"
 
         for batch_folder in os.listdir(dataset_training_path):
             for file in os.listdir(
@@ -65,9 +65,9 @@ class YOLO_ALGO:
 
     def train(
         self,
-        pretrained_weights: bool = False,
+        pretrained_weights: bool = True,
         batch_size: int = 8,
-        epochs: int = 100,
+        epochs: int = 50,
         model_name: str = "Model",
     ):
         yolo_models = {
@@ -140,8 +140,8 @@ class YOLO_ALGO:
 if __name__ == "__main__":
     algo = YOLO_ALGO()
     # algo.get_data_images()
-    # algo.train()
-    algo.export_model(["ONNX","Torchscript","TF-SavedModel", "TF-Lite"])
+    algo.train()
+    # algo.export_model(["ONNX","Torchscript","TF-SavedModel", "TF-Lite"])
     # algo.export_model("Torchscript")
     # algo.export_model("TF-SavedModel")
 

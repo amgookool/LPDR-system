@@ -1,0 +1,441 @@
+train: weights=yolov5s.pt, cfg=, data=data.yaml, hyp=data\hyps\hyp.scratch-low.yaml, epochs=50, batch_size=8, imgsz=640, rect=False, resume=False, nosave=False, noval=False, noautoanchor=False, noplots=False, evolve=None, bucket=, cache=None, image_weights=False, device=, multi_scale=False, single_cls=False, optimizer=SGD, sync_bn=False, workers=8, project=runs\train, name=Model, exist_ok=False, quad=False, cos_lr=False, label_smoothing=0.0, patience=100, freeze=[0], save_period=-1, seed=0, local_rank=-1, entity=None, upload_dataset=False, bbox_interval=-1, artifact_alias=latest
+github: skipping check (not a git repository), for updates see https://github.com/ultralytics/yolov5
+YOLOv5  2022-11-10 Python-3.10.8 torch-1.13.0+cpu CPU
+
+hyperparameters: lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=0.05, cls=0.5, cls_pw=1.0, obj=1.0, obj_pw=1.0, iou_t=0.2, anchor_t=4.0, fl_gamma=0.0, 
+hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, mosaic=1.0, mixup=0.0, copy_paste=0.0
+ClearML: run 'pip install clearml' to automatically track, visualize and remotely train YOLOv5  in ClearML
+Comet: run 'pip install comet_ml' to automatically track and visualize YOLOv5  runs in Comet
+TensorBoard: Start with 'tensorboard --logdir runs\train', view at http://localhost:6006/
+Downloading https://ultralytics.com/assets/Arial.ttf to C:\Users\18683\AppData\Roaming\Ultralytics\Arial.ttf...
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 755k/755k [00:00<00:00, 3.83MB/s] 
+Downloading https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5s.pt to yolov5s.pt...
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 14.1M/14.1M [00:00<00:00, 20.1MB/s] 
+
+Overriding model.yaml nc=80 with nc=1
+
+                 from  n    params  module                                  arguments
+  0                -1  1      3520  models.common.Conv                      [3, 32, 6, 2, 2]
+  1                -1  1     18560  models.common.Conv                      [32, 64, 3, 2]
+  2                -1  1     18816  models.common.C3                        [64, 64, 1]
+  3                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]
+  4                -1  2    115712  models.common.C3                        [128, 128, 2]
+  5                -1  1    295424  models.common.Conv                      [128, 256, 3, 2]
+  6                -1  3    625152  models.common.C3                        [256, 256, 3]
+  7                -1  1   1180672  models.common.Conv                      [256, 512, 3, 2]
+  8                -1  1   1182720  models.common.C3                        [512, 512, 1]
+  9                -1  1    656896  models.common.SPPF                      [512, 512, 5]
+ 10                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 11                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 12           [-1, 6]  1         0  models.common.Concat                    [1]
+ 13                -1  1    361984  models.common.C3                        [512, 256, 1, False]
+ 14                -1  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 15                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 16           [-1, 4]  1         0  models.common.Concat                    [1]
+ 17                -1  1     90880  models.common.C3                        [256, 128, 1, False]
+ 18                -1  1    147712  models.common.Conv                      [128, 128, 3, 2]
+ 19          [-1, 14]  1         0  models.common.Concat                    [1]
+ 20                -1  1    296448  models.common.C3                        [256, 256, 1, False]
+ 21                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]
+ 22          [-1, 10]  1         0  models.common.Concat                    [1]
+ 23                -1  1   1182720  models.common.C3                        [512, 512, 1, False]
+ 24      [17, 20, 23]  1     16182  models.yolo.Detect                      [1, [[10, 13, 16, 30, 33, 23], [30, 61, 62, 45, 59, 119], [116, 90, 156, 198, 373, 326]], [128, 256, 512]]
+Model summary: 214 layers, 7022326 parameters, 7022326 gradients, 15.9 GFLOPs
+
+Transferred 343/349 items from yolov5s.pt
+optimizer: SGD(lr=0.01) with parameter groups 57 weight(decay=0.0), 60 weight(decay=0.0005), 60 bias
+train: Scanning 'D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train' images and labels...370 found, 0 missing, 0 empty, 0 corrupt: 100%|██████████| 370/370 [00:11<00:00, 33.63it/s]
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\00af035d-Vehicle-5.jpg: corrupt JPEG restored and saved 
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\01fd6863-Vehicle-72.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\06198c82-Vehicle-71.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\0887ce27-Vehicle-85.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\0e582d7c-Vehicle-57.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\1580fea8-Vehicle-2.jpg: corrupt JPEG restored and saved 
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\1e88349d-Vehicle-61.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\25f0946b-Vehicle-73.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\28754be1-Vehicle-20.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\2e935f51-Vehicle-8.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\37a388e6-Vehicle-28.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\41e5eb27-Vehicle-18.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\47cc0cf6-Vehicle-68.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\4a2e4cf3-Vehicle-53.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\501c0515-Vehicle-83.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\5088b22a-Vehicle-75.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\53ae2278-Vehicle-80.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\57b03f73-Vehicle-84.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\5928fd9d-Vehicle-26.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\5d3774e1-Vehicle-46.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\60bb89f3-Vehicle-27.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\630b2780-Vehicle-29.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\63927097-Vehicle-67.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\680d1fca-Vehicle-78.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\6b5cc01c-Vehicle-23.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\6b954ea6-Vehicle-44.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\6dfc2d12-Vehicle-70.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\719b4d33-Vehicle-56.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\725a9b56-Vehicle-15.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\7478fc10-Vehicle-9.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\79946fc3-Vehicle-17.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\7c6d3df8-Vehicle-1.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\7d3132c7-Vehicle-41.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\7ed1a385-Vehicle-64.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\8288c350-Vehicle-47.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\82894d5b-Vehicle-34.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\86e25b96-Vehicle-21.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\886aaff8-Vehicle-88.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\8ab271c2-Vehicle-81.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\8ae22442-Vehicle-39.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\8b93800e-Vehicle-62.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\8bdd06a2-Vehicle-69.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\8d1fa5d2-Vehicle-12.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\8ff4dfbf-Vehicle-32.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\95198bf2-Vehicle-31.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\956ff984-Vehicle-25.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\9704fa2f-Vehicle-77.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\9766b914-Vehicle-51.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\9813d280-Vehicle-7.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\99d23ebb-Vehicle-86.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\9c4a81ef-Vehicle-19.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\9e10d8af-Vehicle-55.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\a394fbbf-Vehicle-10.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\a55cad62-Vehicle-3.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\a652791a-Vehicle-48.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\a71010d8-Vehicle-74.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\a9dac07d-Vehicle-63.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\aa0d25b4-Vehicle-49.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\b02cf902-Vehicle-76.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\b1c2f9df-Vehicle-42.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\b26f87b7-Vehicle-58.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\b76fd60a-Vehicle-30.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\b8fceb9f-Vehicle-16.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\bb90d33c-Vehicle-24.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\bd20d4b9-Vehicle-11.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\bf663c57-Vehicle-14.jpg: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\c228c199-Vehicle-52.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\c62de00b-Vehicle-45.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\c73f8b77-Vehicle-79.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\c808496d-Vehicle-82.JPG: corrupt JPEG restored and saved
+train: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train\c87029b4-Vehicle-40.JPG: corrupt JPEG restored and saved
+train: New cache created: D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\train.cache
+val: Scanning 'D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test' images and labels...93 found, 0 missing, 0 empty, 0 corrupt: 100%|██████████| 93/93 [00:14<00:00,  6.26it/s]
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\c8712838-Vehicle-87.JPG: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\c89a60dd-Vehicle-4.jpg: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\ce0f5563-Vehicle-54.JPG: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\d019c7cf-Vehicle-33.jpg: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\d624332d-Vehicle-38.JPG: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\d7b8e6ed-Vehicle-66.JPG: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\db141bed-Vehicle-6.jpg: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\e12066b6-Vehicle-36.JPG: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\e6aa397b-Vehicle-60.JPG: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\f1e24c9e-Vehicle-43.JPG: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\f64f0f1f-Vehicle-50.JPG: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\f6b558fe-Vehicle-13.jpg: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\f83377eb-Vehicle-37.JPG: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\f8a7b18f-Vehicle-59.JPG: corrupt JPEG restored and saved
+val: WARNING  D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test\ff291133-Vehicle-35.jpg: corrupt JPEG restored and saved
+val: New cache created: D:\Adrian-Gookool\LPDR-system\Detection\YoloV5\data_images\test.cache
+
+AutoAnchor: 3.63 anchors/target, 1.000 Best Possible Recall (BPR). Current anchors are a good fit to dataset
+Plotting labels to runs\train\Model2\labels.jpg...
+Image sizes 640 train, 640 val
+Using 8 dataloader workers
+Logging results to runs\train\Model2
+Starting training for 50 epochs...
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       0/49         0G     0.1094    0.02371          0          2        640: 100%|██████████| 47/47 [06:19<00:00,  8.07s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95:   0%|          | 0/6 [00:00<?, ?it/s]
+                                   WARNING  NMS time limit 1.300s exceeded                                                                                                                                                                                          W
+                 Class     Images  Instances          P          R      mAP50   mAP50-95:  17%|█▋        | 1/6 [00:04<00:24,  4.98s/it]
+                                   WARNING  NMS time limit 1.300s exceeded                                                                                                                                                                                          W
+                 Class     Images  Instances          P          R      mAP50   mAP50-95:  33%|███▎      | 2/6 [00:10<00:20,  5.14s/it]
+                                   WARNING  NMS time limit 1.300s exceeded                                                                                                                                                                                          W
+                 Class     Images  Instances          P          R      mAP50   mAP50-95:  50%|█████     | 3/6 [00:15<00:15,  5.10s/it]
+                                   WARNING  NMS time limit 1.300s exceeded                                                                                                                                                                                          W
+                 Class     Images  Instances          P          R      mAP50   mAP50-95:  67%|██████▋   | 4/6 [00:22<00:11,  5.80s/it]
+                                   WARNING  NMS time limit 1.300s exceeded                                                                                                                                                                                          W
+                 Class     Images  Instances          P          R      mAP50   mAP50-95:  83%|████████▎ | 5/6 [00:29<00:06,  6.36s/it]
+                                   WARNING  NMS time limit 1.150s exceeded                                                                                                                                                                                          W
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:34<00:00,  5.73s/it]
+                   all         93         93   0.000774       0.14   0.000582   0.000103
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       1/49         0G    0.09149    0.01715          0         10        640:  74%|███████▍  | 35/47 [04:14<01:27,  7.27s/it]
+       1/49         0G    0.09125    0.01718          0         15        640:  74%|███████▍  | 35/47 [04:23<01:27,  7.27s/it]
+       1/49         0G    0.09125    0.01718          0         15        640:  77%|███████▋  | 36/47 [04:23<01:24,  7.72s/it]
+       1/49         0G     0.0909    0.01714          0         12        640:  77%|███████▋  | 36/47 [04:31<01:24,  7.72s/it]
+       1/49         0G     0.0909    0.01714          0         12        640:  79%|███████▊  | 37/47 [04:31<01:18,  7.87s/it]
+       1/49         0G    0.09068    0.01711          0         10        640:  79%|███████▊  | 37/47 [04:38<01:18,  7.87s/it]
+       1/49         0G    0.09068    0.01711          0         10        640:  81%|████████  | 38/47 [04:38<01:08,  7.66s/it]
+       1/49         0G    0.09035    0.01711          0         13        640:  81%|████████  | 38/47 [04:45<01:08,  7.66s/it]
+       1/49         0G    0.09035    0.01711          0         13        640:  83%|████████▎ | 39/47 [04:45<00:59,  7.47s/it]
+       1/49         0G    0.09021    0.01705          0         14        640:  83%|████████▎ | 39/47 [04:53<00:59,  7.47s/it]
+       1/49         0G    0.09021    0.01705          0         14        640:  85%|████████▌ | 40/47 [04:53<00:53,  7.63s/it]
+       1/49         0G     0.0899    0.01698          0         12        640:  85%|████████▌ | 40/47 [05:02<00:53,  7.63s/it]
+       1/49         0G     0.0899    0.01698          0         12        640:  87%|████████▋ | 41/47 [05:02<00:47,  7.92s/it]
+       1/49         0G    0.08992    0.01707          0         22        640:  87%|████████▋ | 41/47 [05:09<00:47,  7.92s/it]
+       1/49         0G    0.08992    0.01707          0         22        640:  89%|████████▉ | 42/47 [05:09<00:38,  7.75s/it]
+       1/49         0G    0.09004    0.01704          0         19        640:  89%|████████▉ | 42/47 [05:16<00:38,  7.75s/it]
+       1/49         0G    0.09004    0.01704          0         19        640:  91%|█████████▏| 43/47 [05:16<00:30,  7.54s/it]
+       1/49         0G    0.09013    0.01694          0         12        640:  91%|█████████▏| 43/47 [05:24<00:30,  7.54s/it]
+       1/49         0G    0.09013    0.01694          0         12        640:  94%|█████████▎| 44/47 [05:24<00:22,  7.50s/it]
+       1/49         0G       0.09    0.01699          0         16        640:  94%|█████████▎| 44/47 [05:31<00:22,  7.50s/it]
+       1/49         0G       0.09    0.01699          0         16        640:  96%|█████████▌| 45/47 [05:31<00:14,  7.37s/it]
+       1/49         0G    0.08999    0.01702          0         20        640:  96%|█████████▌| 45/47 [05:38<00:14,  7.37s/it]
+       1/49         0G    0.08999    0.01702          0         20        640:  98%|█████████▊| 46/47 [05:38<00:07,  7.29s/it]
+       1/49         0G    0.08903    0.01687          0          2        640:  98%|█████████▊| 46/47 [05:40<00:07,  7.29s/it]
+       1/49         0G    0.08903    0.01687          0          2        640: 100%|██████████| 47/47 [05:40<00:00,  5.87s/it]
+       1/49         0G    0.08903    0.01687          0          2        640: 100%|██████████| 47/47 [05:40<00:00,  7.25s/it]
+
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:30<00:00,  5.04s/it]
+                   all         93         93    0.00247      0.742     0.0124    0.00225
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       2/49         0G    0.08159     0.0146          0          3        640: 100%|██████████| 47/47 [06:02<00:00,  7.71s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:35<00:00,  5.95s/it]
+                   all         93         93    0.00272      0.817     0.0151    0.00287
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       3/49         0G    0.07171    0.01494          0          2        640: 100%|██████████| 47/47 [07:07<00:00,  9.09s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.26s/it]
+                   all         93         93    0.00305      0.914      0.224      0.047
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       4/49         0G    0.06319     0.0146          0          5        640: 100%|██████████| 47/47 [05:37<00:00,  7.17s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.28s/it]
+                   all         93         93    0.00323      0.968      0.422      0.157
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       5/49         0G    0.05544    0.01553          0          3        640: 100%|██████████| 47/47 [05:38<00:00,  7.19s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.23s/it]
+                   all         93         93       0.21      0.849      0.699       0.27
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       6/49         0G    0.05136    0.01462          0          5        640: 100%|██████████| 47/47 [05:36<00:00,  7.15s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.17s/it]
+                   all         93         93      0.841      0.283      0.747      0.306
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       7/49         0G    0.04702    0.01324          0          3        640: 100%|██████████| 47/47 [05:37<00:00,  7.18s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.17s/it]
+                   all         93         93      0.859       0.59      0.768      0.322
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       8/49         0G    0.04232    0.01215          0          3        640: 100%|██████████| 47/47 [05:42<00:00,  7.29s/it]
+ ... (more hidden) ...
+                   all         93         93      0.848      0.777       0.84      0.383
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+ ... (more hidden) ...
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.25s/it]
+                   all         93         93      0.752      0.815      0.789      0.465
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      10/49         0G    0.04085    0.01163          0          6        640: 100%|██████████| 47/47 [05:55<00:00,  7.56s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.23s/it]
+                   all         93         93      0.754      0.796      0.817      0.487
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      11/49         0G    0.03766    0.01089          0          1        640: 100%|██████████| 47/47 [05:48<00:00,  7.42s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:26<00:00,  4.40s/it]
+                   all         93         93      0.826      0.817      0.853      0.442
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      12/49         0G    0.03748   0.009788          0          4        640: 100%|██████████| 47/47 [05:54<00:00,  7.55s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.26s/it]
+                   all         93         93      0.798      0.828      0.847      0.393
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      13/49         0G    0.03639   0.009362          0          3        640: 100%|██████████| 47/47 [05:42<00:00,  7.29s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.26s/it]
+                   all         93         93      0.827      0.873      0.891      0.565
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      14/49         0G    0.03575    0.00851          0          3        640: 100%|██████████| 47/47 [05:47<00:00,  7.39s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.33s/it]
+                   all         93         93      0.807      0.899      0.874      0.496
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      15/49         0G    0.03383   0.008443          0          3        640: 100%|██████████| 47/47 [05:48<00:00,  7.42s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.27s/it]
+                   all         93         93      0.781      0.882      0.887      0.565
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      16/49         0G    0.03232   0.007582          0          2        640: 100%|██████████| 47/47 [05:52<00:00,  7.49s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:27<00:00,  4.51s/it]
+                   all         93         93      0.868      0.845      0.895      0.542
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      17/49         0G     0.0332   0.007803          0          7        640: 100%|██████████| 47/47 [05:47<00:00,  7.39s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.31s/it]
+                   all         93         93      0.847      0.836      0.894      0.495
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      18/49         0G    0.03153   0.007758          0          5        640: 100%|██████████| 47/47 [05:51<00:00,  7.48s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:26<00:00,  4.41s/it]
+                   all         93         93      0.809      0.871      0.883      0.569
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      19/49         0G    0.03058   0.007592          0          5        640: 100%|██████████| 47/47 [05:37<00:00,  7.18s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:24<00:00,  4.16s/it]
+                   all         93         93      0.794      0.892      0.857       0.52
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      20/49         0G    0.02883   0.007234          0          2        640: 100%|██████████| 47/47 [05:45<00:00,  7.36s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:26<00:00,  4.47s/it]
+                   all         93         93      0.807        0.9      0.858       0.52
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      21/49         0G    0.02925   0.007045          0          3        640: 100%|██████████| 47/47 [05:46<00:00,  7.38s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.22s/it]
+                   all         93         93      0.895       0.86      0.904      0.618
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      22/49         0G    0.02898   0.006656          0          4        640: 100%|██████████| 47/47 [05:50<00:00,  7.45s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.28s/it]
+                   all         93         93      0.839      0.882      0.897      0.567
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      23/49         0G    0.02906   0.006972          0          2        640: 100%|██████████| 47/47 [05:41<00:00,  7.27s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.17s/it]
+                   all         93         93      0.838      0.891      0.875      0.591
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      24/49         0G    0.02783   0.006604          0          6        640: 100%|██████████| 47/47 [05:42<00:00,  7.29s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.24s/it]
+                   all         93         93      0.879      0.859      0.869       0.59
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      25/49         0G    0.02814   0.006219          0          2        640: 100%|██████████| 47/47 [05:37<00:00,  7.19s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.30s/it]
+                   all         93         93      0.799      0.939      0.859      0.576
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      26/49         0G    0.02689   0.006584          0          0        640: 100%|██████████| 47/47 [05:40<00:00,  7.24s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:26<00:00,  4.36s/it]
+                   all         93         93      0.797      0.928       0.83      0.576
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      27/49         0G    0.02552   0.006361          0          3        640: 100%|██████████| 47/47 [05:37<00:00,  7.18s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.18s/it]
+                   all         93         93      0.829      0.903      0.856      0.593
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      28/49         0G    0.02507   0.006336          0          4        640: 100%|██████████| 47/47 [05:42<00:00,  7.29s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.27s/it]
+                   all         93         93      0.817      0.892      0.851      0.591
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      29/49         0G    0.02418   0.005931          0          3        640: 100%|██████████| 47/47 [05:42<00:00,  7.28s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.22s/it]
+                   all         93         93      0.835      0.892      0.833      0.586
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      30/49         0G    0.02409   0.005822          0          2        640: 100%|██████████| 47/47 [05:39<00:00,  7.23s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.23s/it]
+                   all         93         93      0.833      0.903      0.893        0.6
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      31/49         0G    0.02309   0.006062          0          4        640: 100%|██████████| 47/47 [05:40<00:00,  7.24s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.18s/it]
+                   all         93         93      0.838      0.914      0.901      0.635
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      32/49         0G    0.02345   0.006103          0          2        640: 100%|██████████| 47/47 [05:40<00:00,  7.25s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.24s/it]
+                   all         93         93      0.832      0.914      0.876      0.613
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      33/49         0G    0.02309   0.005881          0          2        640: 100%|██████████| 47/47 [05:39<00:00,  7.22s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.26s/it]
+                   all         93         93      0.833      0.914      0.869       0.57
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      34/49         0G    0.02273   0.005977          0          8        640: 100%|██████████| 47/47 [05:40<00:00,  7.25s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.25s/it]
+                   all         93         93      0.833      0.911      0.882      0.623
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      35/49         0G    0.02129   0.005798          0          3        640: 100%|██████████| 47/47 [05:35<00:00,  7.15s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.19s/it]
+                   all         93         93      0.833      0.911      0.887      0.607
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      36/49         0G    0.02021   0.005535          0          2        640: 100%|██████████| 47/47 [05:39<00:00,  7.23s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:24<00:00,  4.14s/it]
+                   all         93         93      0.841       0.91      0.887       0.64
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      37/49         0G    0.02007   0.005437          0          1        640: 100%|██████████| 47/47 [05:41<00:00,  7.28s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.27s/it]
+                   all         93         93      0.833      0.909      0.864       0.63
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      38/49         0G    0.02019   0.005588          0          3        640: 100%|██████████| 47/47 [05:44<00:00,  7.32s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:24<00:00,  4.13s/it]
+                   all         93         93      0.805      0.934      0.845      0.617
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      39/49         0G    0.02011   0.005356          0          2        640: 100%|██████████| 47/47 [05:41<00:00,  7.27s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:26<00:00,  4.41s/it]
+                   all         93         93      0.803      0.921      0.837      0.622
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      40/49         0G    0.01946   0.005341          0          3        640: 100%|██████████| 47/47 [05:45<00:00,  7.34s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.18s/it]
+                   all         93         93       0.82      0.903      0.864       0.64
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      41/49         0G    0.01879   0.005658          0          5        640: 100%|██████████| 47/47 [05:37<00:00,  7.19s/it]
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      42/49         0G     0.0177   0.005206          0          1        640: 100%|██████████| 47/47 [05:35<00:00,  7.15s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:24<00:00,  4.13s/it]
+                   all         93         93      0.823        0.9      0.874      0.667
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      43/49         0G    0.01829   0.005464          0          1        640: 100%|██████████| 47/47 [05:36<00:00,  7.15s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:24<00:00,  4.15s/it]
+                   all         93         93      0.823      0.899      0.861      0.642
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      44/49         0G    0.01779   0.005334          0          2        640: 100%|██████████| 47/47 [05:38<00:00,  7.20s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:24<00:00,  4.11s/it]
+                   all         93         93      0.833      0.913      0.885      0.652
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      45/49         0G    0.01735   0.005197          0          4        640: 100%|██████████| 47/47 [05:37<00:00,  7.18s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:24<00:00,  4.09s/it]
+                   all         93         93      0.833      0.911      0.881      0.657
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      46/49         0G    0.01779    0.00536          0          5        640: 100%|██████████| 47/47 [05:38<00:00,  7.21s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:25<00:00,  4.19s/it]
+                   all         93         93      0.808      0.903      0.856      0.642
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      47/49         0G     0.0166   0.005003          0          3        640: 100%|██████████| 47/47 [05:41<00:00,  7.27s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:24<00:00,  4.15s/it]
+                   all         93         93      0.813      0.903      0.852       0.63
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      48/49         0G    0.01642   0.005007          0          2        640: 100%|██████████| 47/47 [05:38<00:00,  7.21s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:24<00:00,  4.16s/it]
+                   all         93         93      0.823      0.914      0.871      0.646
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      49/49         0G    0.01652   0.005245          0          2        640: 100%|██████████| 47/47 [05:40<00:00,  7.24s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:24<00:00,  4.16s/it]
+                   all         93         93      0.823      0.914       0.87      0.643
+
+50 epochs completed in 5.159 hours.
+Optimizer stripped from runs\train\Model2\weights\last.pt, 14.4MB
+Optimizer stripped from runs\train\Model2\weights\best.pt, 14.4MB
+
+Validating runs\train\Model2\weights\best.pt...
+Fusing layers...
+Model summary: 157 layers, 7012822 parameters, 0 gradients, 15.8 GFLOPs
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 6/6 [00:26<00:00,  4.46s/it]
+                   all         93         93      0.823        0.9      0.874      0.667
+Results saved to runs\train\Model2
+Deactivating Environment: D:\Adrian-Gookool\LPDR-system\yolo-env
