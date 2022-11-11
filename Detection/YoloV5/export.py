@@ -311,7 +311,7 @@ def export_saved_model(model,
                        topk_all=100,
                        iou_thres=0.45,
                        conf_thres=0.25,
-                       keras=False,
+                       keras=True,
                        prefix=colorstr('TensorFlow SavedModel:')):
     # YOLOv5 TensorFlow SavedModel export
     try:

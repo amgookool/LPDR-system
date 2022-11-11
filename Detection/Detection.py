@@ -131,7 +131,11 @@ class YOLO_ALGO:
         print(cmd)
         subprocess.run(cmd, shell=True)
 
-
+    def evaluate_model(self):
+        os.chdir(self.algorithm_dir)
+        weight = os.path.join(self.algorithm_dir + "\\" + r"runs\train\Model2\weights\best.pt")
+        code_func = f"python val.py --weights {weight} --data data.yaml --img 640"
+        subprocess.run(code_func,shell=True)
 
     def predict(self):
         pass
@@ -140,10 +144,9 @@ class YOLO_ALGO:
 if __name__ == "__main__":
     algo = YOLO_ALGO()
     # algo.get_data_images()
-    algo.train()
-    # algo.export_model(["ONNX","Torchscript","TF-SavedModel", "TF-Lite"])
-    # algo.export_model("Torchscript")
-    # algo.export_model("TF-SavedModel")
+    # algo.train()
+    # algo.evaluate_model()
+    algo.export_model(["ONNX","TF-SavedModel"])
 
     # image_paths: list = [x for x in xml_df.get("filepath")]
     # xml_paths = [a[:-3] + "xml" for a in xml_df.get("filepath")]
