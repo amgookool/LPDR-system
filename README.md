@@ -69,3 +69,42 @@ torch
 torchvision
 torchaudio
 ```
+
+## Building OpenCV with CUDA Support
+
+[Video Reference](https://www.youtube.com/watch?v=d8Jx6zO1yw0&t=306s)
+
+### Requirements
+
+- [CMake](https://cmake.org/download/)
+
+- [Anaconda](https://www.anaconda.com/)
+
+- [OpenCV Github Repository](https://github.com/opencv/opencv)
+
+- [OpenCV Contrib Github Repository](https://github.com/opencv/opencv_contrib/tree/4.x)
+
+- [Visual Studio Community](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=community&rel=16&utm_medium=microsoft&utm_campaign=download+from+relnotes&utm_content=vs2019ga+button)
+
+### Notes
+
+- [CUDA Wikipedia (Version of GPU)](https://en.wikipedia.org/wiki/CUDA)
+
+When using CMake to build the source code, the following flags must be set:
+
+- **WITH_CUDA**
+- **ENABLE_FAST_MATH**
+- **BUILD_opencv_world**
+- **OPENCV_EXTRA_MODULES_PATH** -> Set to path of the modules folder in the opencv_contrib folder
+- **CUDA_FAST_MATH**
+- **CUDA_ARCH_BIN** -> Refer to Wikipedia Link for CUDA version of your specific GPU (RTX 2060 is 7.5)
+- **CMAKE_CONFIGURATION_TYPES** -> Set to Release
+
+Ensure that python environment variables are set correctly for your anaconda distribution.
+![OpenCV-Python Anaconda Path Settings](https://i.postimg.cc/zXgQgQBz/Open-CV-Python-Cmake-Configs.png)
+
+Once configuration hve been set via the CMake GUI, go into your terminal and run the following command in your anaconda base environment:
+
+```bash
+cmake --build "C:/Users/amgoo/OpenCV-GPU/build" --target INSTALL --config Release
+```

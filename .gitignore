@@ -3,3 +3,8 @@ label-env/
 tf-fyp-env/
 torch-fyp-env/
 yolo-env/
+*/__pycache__/
+Datasets/*/Data/
+Datasets/*/test/
+Datasets/*/train/
+*.record

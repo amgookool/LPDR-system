@@ -1,17 +1,31 @@
-from keras_preprocessing.image import load_img, img_to_array
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import division
+
+from object_detection.utils import dataset_util
+from collections import namedtuple
 import xml.etree.ElementTree as ET
+
 from operator import itemgetter
+import tensorflow as tf
+from PIL import Image
+
 import pandas as pd
 import numpy as np
+import shutil
+
 import glob
+import sys
 import cv2
+
 import os
+import io
+import re
 
-import warnings
-
-warnings.filterwarnings("ignore")
-
-work_dir = os.path.abspath(os.getcwd() + r"\Datasets\LP-Detection")
+work_dir = os.path.join(os.getcwd(), "Datasets", "LP-Detection")
+Data_directory: str = os.path.join(work_dir, "Data")
+Train_directory: str = os.path.join(work_dir, "train")
+Test_directory: str = os.path.join(work_dir, "test")
 
 
 def read_xml_format(path_: str) -> pd.DataFrame:
@@ -25,11 +39,12 @@ def read_xml_format(path_: str) -> pd.DataFrame:
         pd.DataFrame: Pandas dataframe containing data on all xml files. Can be converted into a CSV file.
     """
     xml_files = list()
-    for xml_file in glob.glob(path_ + "/*.xml"):
+    xml_path = os.path.join(path_, "*.xml")
+    for xml_file in glob.glob(xml_path):
         tree = ET.parse(xml_file)
         root = tree.getroot()
         for member in root.findall("object"):
-            filepath = os.path.abspath(path_ + "\\" + root.find("filename").text)
+            filepath = os.path.join(path_, root.find("filename").text)
             filename = root.find("filename").text
             img_size = {
                 "width": int(root.find("size")[0].text),
@@ -73,6 +88,53 @@ def read_xml_format(path_: str) -> pd.DataFrame:
 
     df = pd.DataFrame(xml_files, columns=df_columns)
     return df
+
+
+def YOLO_txt_format(path_: str) -> pd.DataFrame:
+    """This function generates the txt files and returns a dataframe for the data needed to train the YOLO model.
+    The data needed to train the algorithm are:
+
+        class_id x_center y_center bbox_width bbox_height
+
+    Args:
+        path_ (str): The path of the directory containing images and xml files
+
+    Returns:
+        pd.DataFrame: A dataframe consisting of the required data for the YOLO algorithm
+    """
+    xml_df = read_xml_format(path_)
+
+    # Preprocess Data for required ata for YOLO algorithm
+    # Normalize the Data with respect to photo height and width
+    xml_df["x_center"] = (xml_df["xmin"] + xml_df["xmax"]
+                          ) / (2 * xml_df["width"])
+
+    xml_df["y_center"] = (xml_df["ymin"] + xml_df["ymax"]
+                          ) / (2 * xml_df["height"])
+
+    xml_df["bbox_width"] = (xml_df["xmax"] - xml_df["xmin"]) / xml_df["width"]
+
+    xml_df["bbox_height"] = (
+        xml_df["ymax"] - xml_df["ymin"]) / xml_df["height"]
+
+    # Slice Data for YOLO text file format
+    data_values = xml_df[
+        ["filename", "x_center", "y_center", "bbox_width", "bbox_height"]
+    ].values
+
+    data_paths = xml_df["filepath"].values
+
+    for fpath, (fname, x, y, w, h) in zip(data_paths, data_values):
+        fn, _ = fname.split(".")
+
+        text_file_format = f"0 {x} {y} {w} {h}"
+        file = fpath[:-4]
+
+        with open(file + ".txt", mode="w") as f:
+            f.write(text_file_format)
+            f.close()
+
+    return xml_df
 
 
 def verify_vehicle_xml_annotations(path_: str):
@@ -122,7 +184,8 @@ def verify_vehicle_xml_annotations(path_: str):
         blue_bgr_scheme = (210, 0, 0)
 
         for box in o["bboxs"]:
-            cv2.rectangle(image, (box[0], box[1]), (box[2], box[3]), blue_bgr_scheme, 8)
+            cv2.rectangle(image, (box[0], box[1]),
+                          (box[2], box[3]), blue_bgr_scheme, 8)
 
         cv2.namedWindow(f"{o['filename']}", cv2.WINDOW_NORMAL)
         cv2.imshow(f"{o['filename']}", image)
@@ -131,97 +194,171 @@ def verify_vehicle_xml_annotations(path_: str):
             cv2.destroyAllWindows()
 
 
-def YOLO_txt_format(path_: str) -> pd.DataFrame:
-    """This function generates the txt files and returns a dataframe for the data needed to train the YOLO model.
-    The data needed to train the algorithm are:
-
-        class_id x_center y_center bbox_width bbox_height
+def generate_csv_file(xml_path: str, save_path: str, filename: str):
+    """generate_csv_file This function generates a csv file containing the
+    bounding boxes for each object
 
     Args:
-        path_ (str): The path of the directory containing images and xml files
+        xml_df (pd.DataFrames): The dataframe containing the bounding boxes"""
+    xml_df = read_xml_format(xml_path)
 
-    Returns:
-        pd.DataFrame: A dataframe consisting of the required data for the YOLO algorithm
+    new_df = xml_df[["filepath", "filename", "width", "height",
+                     "classname", "xmin", "ymin", "xmax", "ymax"]]
+
+    filename = filename + ".csv"
+    save = os.path.join(save_path, filename)
+    new_df.to_csv(save, index=0)
+
+
+def generate_tf_record(imgs_path: str, csv_path: str, output_path: str, filename_: str):
+    """generate_tf_record This function generates a tfrecord file containing the
+    bounding boxes for each object
     """
-    xml_df = read_xml_format(path_)
+    record_filename = os.path.join(output_path,  filename_ + ".record")
 
-    # Preprocess Data for required ata for YOLO algorithm
-    # Normalize the Data with respect to photo height and width
-    xml_df["x_center"] = (xml_df["xmin"] + xml_df["xmax"]) / (2 * xml_df["width"])
+    writer = tf.io.TFRecordWriter(record_filename)
 
-    xml_df["y_center"] = (xml_df["ymin"] + xml_df["ymax"]) / (2 * xml_df["height"])
+    def class_text_to_int(row_label):
+        if row_label == "License-Plate" or row_label == "Character":
+            return 1
 
-    xml_df["bbox_width"] = (xml_df["xmax"] - xml_df["xmin"]) / xml_df["width"]
+    def split(df: pd.DataFrame, group):
+        data = namedtuple('data', ['filename', 'object'])
+        gb = df.groupby(group)
+        return [data(filename, gb.get_group(x)) for filename, x in zip(gb.groups.keys(), gb.groups)]
 
-    xml_df["bbox_height"] = (xml_df["ymax"] - xml_df["ymin"]) / xml_df["height"]
+    group = split(pd.read_csv(csv_path), "filename")
 
-    # Slice Data for YOLO text file format
-    data_values = xml_df[
-        ["filename", "x_center", "y_center", "bbox_width", "bbox_height"]
-    ].values
+    for g in group:
+        with tf.io.gfile.GFile(os.path.join(imgs_path, '{}'.format(g.filename)), 'rb') as fid:
+            encoded_jpg = fid.read()
+        encoded_jpg_io = io.BytesIO(encoded_jpg)
+        image = Image.open(encoded_jpg_io)
 
-    data_paths = xml_df["filepath"].values
+        width, height = image.size
+        filename = g.filename.encode('utf8')
 
-    for fpath, (fname, x, y, w, h) in zip(data_paths, data_values):
-        fn, _ = fname.split(".")
+        image_format = b'jpg'
+        xmins = []
+        xmaxs = []
+        ymins = []
+        ymaxs = []
+        classes = []
+        classes_text = []
 
-        text_file_format = f"0 {x} {y} {w} {h}"
-        file = fpath[:-4]
-        print(file)
+        for _, row in g.object.iterrows():
+            xmins.append(row["xmin"] / width)
+            xmaxs.append(row["xmax"]/width)
+            ymins.append(row["ymin"]/height)
+            ymaxs.append(row["ymax"]/height)
+            classes.append(class_text_to_int(row["classname"]))
+            encoded_class_text = row["classname"].encode("utf-8")
+            classes_text.append(encoded_class_text)
 
-        with open(file + ".txt", mode="w") as f:
-            f.write(text_file_format)
-            f.close()
+        tf_example = tf.train.Example(features=tf.train.Features(feature={
+            'image/height': dataset_util.int64_feature(height),
+            'image/width': dataset_util.int64_feature(width),
+            'image/filename': dataset_util.bytes_feature(filename),
+            'image/source_id': dataset_util.bytes_feature(filename),
+            'image/encoded': dataset_util.bytes_feature(encoded_jpg),
+            'image/format': dataset_util.bytes_feature(image_format),
+            'image/object/bbox/xmin': dataset_util.float_list_feature(xmins),
+            'image/object/bbox/xmax': dataset_util.float_list_feature(xmaxs),
+            'image/object/bbox/ymin': dataset_util.float_list_feature(ymins),
+            'image/object/bbox/ymax': dataset_util.float_list_feature(ymaxs),
+            'image/object/class/text': dataset_util.bytes_list_feature(classes_text),
+            'image/object/class/label': dataset_util.int64_list_feature(classes),
+        }))
+        writer.write(tf_example.SerializeToString())
+    writer.close()
 
-    return xml_df
 
+def split_data_images(training_percent: float = 0.8):
+    txt_files = list()
+    xml_files = list()
+    img_files = list()
 
-def image_bbox_resize(
-    xml_df: pd.DataFrame, img_target_size: tuple = (224, 224)
-) -> dict:
-    image_data = label_data = list()
-    bbox_df: pd.DataFrame = xml_df.get(["filepath", "xmin", "ymin", "xmax", "ymax"])
-    for index, data in bbox_df.iterrows():
-        image_array: np.ndarray = cv2.imread(data["filepath"])
-        height, width, depth = image_array.shape  # Height, Width, Depth
+    file_pattern = r"\.JPG|\.png|\.PNG|\.jpg|\.txt|\.xml"
 
-        # Image Preprocessing
-        load_image = load_img(
-            data["filepath"], target_size=img_target_size, color_mode="rgb"
-        )
-        img_array = img_to_array(load_image)
-        # Normalization of Image
-        n_image = img_array / 255
+    for file in os.listdir(Data_directory):
+        if re.search(pattern=file_pattern, string=file):
+            if file[-4:] == ".txt":
+                file_path = os.path.join(Data_directory, file)
+                txt_files.append(file_path)
 
-        image_data.append(n_image)
+            if (file[-4:] == ".JPG" or file[-4:] == ".jpg" or file[-4:] == ".png" or file[-4:] == ".PNG"):
+                file_path = os.path.join(Data_directory, file)
+                img_files.append(file_path)
 
-        # Normalization of Labels
-        n_xmin, n_xmax = data["xmin"] / width, data["xmax"] / width
-        n_ymin, n_ymax = data["ymin"] / height, data["ymax"] / height
+            if file[-4:] == ".xml":
+                file_path = os.path.join(Data_directory, file)
+                xml_files.append(file_path)
 
-        n_labels = (n_xmin, n_xmax, n_ymin, n_ymax)
+    data = {
+        "txt-file": txt_files,
+        "image-file": img_files,
+        "xml-file": xml_files,
+    }
+    df = pd.DataFrame(data=data)
 
-        label_data.append(n_labels)
-    return {"Image-Data": image_data, "Label-Data": label_data}
+    num_rows, _ = df.shape
+    num_training = round(training_percent * num_rows)
+
+    training_df: pd.DataFrame = df.iloc[:num_training, :]
+    train_directory = os.path.join(work_dir, "train")
+    for _, row in training_df.iterrows():
+        shutil.move(row['txt-file'], train_directory)
+        shutil.move(row['image-file'], train_directory)
+        shutil.move(row['xml-file'], train_directory)
+
+    testing_df: pd.DataFrame = df.iloc[num_training:, :]
+    test_directory = os.path.join(work_dir, "test")
+    for _, row in testing_df.iterrows():
+        shutil.move(row['txt-file'], test_directory)
+        shutil.move(row['image-file'], test_directory)
+        shutil.move(row['xml-file'], test_directory)
 
 
 if __name__ == "__main__":
-    TrainTest_directory: str = os.path.join(work_dir + r"\Train-Test")
-    # xml_df: pd.DataFrame = read_xml_format(training_directory)
-    # verify_vehicle_xml_annotations(training_directory)
-    xml_df : pd.DataFrame = YOLO_txt_format(TrainTest_directory) 
-    
-    
-    # xml_df.to_csv(TrainTest_directory + ".csv",index=0)
-    
-    # Datasets\LP-Detection\Training\1e88349d-Vehicle-61.JPG
-    # image_paths: list = [x for x in xml_df.get("filepath")]
-    # xml_paths = [a[:-3] + "xml" for a in xml_df.get("filepath")]
-    # data = image_bbox_resize(xml_df=xml_df)
-    # print(data['Label-Data'])
+    df: pd.DataFrame = YOLO_txt_format(Data_directory)
 
-    # condense_df = df[[x for x in df_columns if x != 'filepath']]
-    # if condense:
-    #   condense_df.to_csv(path_ + ".csv", index=0)
-    # else:
-    #   df.to_csv(path_+".csv", index=0)
+    # split_data_images(training_percent=0.9)
+
+    generate_csv_file(Train_directory, work_dir, "Train")
+    generate_csv_file(Test_directory, work_dir, "Test")
+
+    train_csv = os.path.join(work_dir, "Train.csv")
+    test_csv = os.path.join(work_dir, "Test.csv")
+
+    generate_tf_record(Train_directory, train_csv, work_dir, "Train")
+    generate_tf_record(Test_directory, test_csv, work_dir, "Test")
+
+
+# def image_bbox_resize(
+#     xml_df: pd.DataFrame, img_target_size: tuple = (224, 224)
+# ) -> dict:
+#     image_data = label_data = list()
+#     bbox_df: pd.DataFrame = xml_df.get(
+#         ["filepath", "xmin", "ymin", "xmax", "ymax"])
+#     for index, data in bbox_df.iterrows():
+#         image_array: np.ndarray = cv2.imread(data["filepath"])
+#         height, width, depth = image_array.shape  # Height, Width, Depth
+
+#         # Image Preprocessing
+#         load_image = load_img(
+#             data["filepath"], target_size=img_target_size, color_mode="rgb"
+#         )
+#         img_array = img_to_array(load_image)
+#         # Normalization of Image
+#         n_image = img_array / 255
+
+#         image_data.append(n_image)
+
+#         # Normalization of Labels
+#         n_xmin, n_xmax = data["xmin"] / width, data["xmax"] / width
+#         n_ymin, n_ymax = data["ymin"] / height, data["ymax"] / height
+
+#         n_labels = (n_xmin, n_xmax, n_ymin, n_ymax)
+
+#         label_data.append(n_labels)
+#     return {"Image-Data": image_data, "Label-Data": label_data}
