@@ -8,3 +8,5 @@ Datasets/*/Data/
 Datasets/*/test/
 Datasets/*/train/
 *.record
+CUDA/*.exe
+CUDA/*.zip

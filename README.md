@@ -84,7 +84,7 @@ torchaudio
 
 - [OpenCV Contrib Github Repository](https://github.com/opencv/opencv_contrib/tree/4.x)
 
-- [Visual Studio Community](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=community&rel=16&utm_medium=microsoft&utm_campaign=download+from+relnotes&utm_content=vs2019ga+button)
+- [Visual Studio 2019 Community](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=community&rel=16&utm_medium=microsoft&utm_campaign=download+from+relnotes&utm_content=vs2019ga+button)
 
 ### Notes
 
@@ -94,6 +94,7 @@ When using CMake to build the source code, the following flags must be set:
 
 - **WITH_CUDA**
 - **ENABLE_FAST_MATH**
+- #**OPENCV_DNN_CUDA**
 - **BUILD_opencv_world**
 - **OPENCV_EXTRA_MODULES_PATH** -> Set to path of the modules folder in the opencv_contrib folder
 - **CUDA_FAST_MATH**
@@ -106,5 +107,5 @@ Ensure that python environment variables are set correctly for your anaconda dis
 Once configuration hve been set via the CMake GUI, go into your terminal and run the following command in your anaconda base environment:
 
 ```bash
-cmake --build "C:/Users/amgoo/OpenCV-GPU/build" --target INSTALL --config Release
+cmake --build "C:\OpenCV-4.5.2\build" --target INSTALL --config Release
 ```

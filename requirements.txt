@@ -6,11 +6,11 @@ numpy
 pandas
 matplotlib
 
-pytesseract
+# pytesseract
 
 # For GPU Support, build OpenCV from source
-opencv-python
-opencv-contrib-python
+# opencv-python
+# opencv-contrib-python
 
 # For GPU support in Tensorflow, install CUDA V11.2 and CUDNN V8.1.2
 tensorflow
