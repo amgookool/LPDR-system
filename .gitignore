@@ -10,3 +10,8 @@ Datasets/*/train/
 *.record
 CUDA/*.exe
 CUDA/*.zip
+Recognition/Chars-Dataset/
+Recognition/Model/Checkpoints
+Recognition/Model/Logs
+Recognition/Model/*.h5
+Recognition/Model/*.onnx

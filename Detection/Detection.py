@@ -219,7 +219,7 @@ class YOLO_ALGO:
             
             # Drawing Predictions
             if show_predictions:
-                # Boudning Box
+                # Bounding Box
                 cv2.rectangle(img_, (x, y), (x+w, y+h), (255, 5, 255), 2)
 
                 # Rectangle for confidence score
@@ -242,7 +242,7 @@ class YOLO_ALGO:
     # algo.evaluate_model()
     # algo.export_model(["ONNX","TF-SavedModel"])
     # detections = algo.predict(
-    #     image=r"C:\Users\amgoo\Desktop\LPDR-system\Detection\IMG_4357.jpg",show_predictions=False)
+    #     image=,show_predictions=False)
     
     # for img in detections:
     #     cv2.namedWindow("Prediction", cv2.WINDOW_GUI_NORMAL)

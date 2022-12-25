@@ -5,14 +5,7 @@ autopep8
 numpy
 pandas
 matplotlib
-
-# pytesseract
-
-# For GPU Support, build OpenCV from source
-# opencv-python
-# opencv-contrib-python
-
-# For GPU support in Tensorflow, install CUDA V11.2 and CUDNN V8.1.2
-tensorflow
-
-
+scipy
+onnxmltools
+tf2onnx
+# scikit-learn

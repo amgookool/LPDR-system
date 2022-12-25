@@ -3,13 +3,13 @@ from Segmentation import Segmentation as segmentation
 from Recognition import Recognition as recognition
 from Utilities import Utilities as utils
 import cv2, sys
-import tensorflow as tf
+# import tensorflow as tf
 
 
 if __name__ =="__main__":
     localization = detection.YOLO_ALGO()
     detections = localization.predict(
-        image=r"C:\Users\amgoo\Desktop\LPDR-system\Detection\IMG_4357.jpg", show_predictions=False)
+        image=r"Detection/IMG_4357.jpg", show_predictions=False)
     
     segment = segmentation.SEGMENT_ALGO(detections)
     segmentations = segment.process()

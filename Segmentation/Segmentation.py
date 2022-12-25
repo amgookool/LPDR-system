@@ -50,7 +50,7 @@ class SEGMENT_ALGO:
                 else:
                     # Else, construct label mask to display only connected components
                     label_mask = np.zeros(img.shape, dtype=np.uint8)
-                    label_mask[labels == label] = 255 # white blob at the pixel loaction 
+                    label_mask[labels == label] = 255 # white blob at the pixel location 
                     num_pixels = cv2.countNonZero(label_mask) 
                 
                 # if number of pixels in component is between upper and lower boundaries, add it to mask
@@ -60,10 +60,10 @@ class SEGMENT_ALGO:
             # cv2.namedWindow("Mask-Image", cv2.WINDOW_GUI_NORMAL)
             # cv2.imshow("Mask-Image", mask)
 
-            # Find contourrs and get the bounding boxes for the contours
+            # Find contours and get the bounding boxes for the contours
             contours, hier = cv2.findContours(mask.copy(),cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
             
-            # Soring the bounding boxes from left to right, top to bottom
+            # Storing the bounding boxes from left to right, top to bottom
             # contours = sorted(contours, key= lambda ctr:  cv2.boundingRect(ctr)[0])
             def contour_sort(a,b):
                 bb_a = cv2.boundingRect(a)
