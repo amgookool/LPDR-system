@@ -1,17 +1,49 @@
+# Environments
 fyp-env/
 label-env/
 tf-fyp-env/
 torch-fyp-env/
 yolo-env/
+
+# Pycache
 */__pycache__/
-Datasets/*/Data/
-Datasets/*/test/
-Datasets/*/train/
-*.record
-CUDA/*.exe
-CUDA/*.zip
+*/__pycache__/*
+
+# Images from Datasets
+Datasets/*/Data/*
+Datasets/*/test/*
+Datasets/*/train/*
+
+# Recognition Data
 Recognition/Chars-Dataset/
-Recognition/Model/Checkpoints
-Recognition/Model/Logs
-Recognition/Model/*.h5
-Recognition/Model/*.onnx
+
+Recognition/Model/*/Checkpoints/*
+!Recognition/Model/AlexNet/Checkpoints/model--epoch32.h5
+!Recognition/Model/AlexNet/Checkpoints/model--epoch33.h5
+
+Recognition/Model/*/Logs/*
+
+
+# YOLO SUBMODULE
+Detection/YoloV5/data_images/test/*
+Detection/YoloV5/data_images/train/*
+Detection/YoloV5/data_images/*.cache
+
+# Raw Dataset
+Raw-Dataset/Detection/*
+Raw-Dataset/Segmentation/*
+
+Recognition/__pycache__/Recognition.cpython-310.pyc
+Recognition/__pycache__/__init__.cpython-310.pyc
+Detection/Models/*
+Detection/YoloV5/data_images/test.cache
+Detection/YoloV5/data_images/train.cache
+Detection/YoloV5/yolov5s.pt
+
+Recognition/Models/ResNet/Model/resnet152V2--epoch45.h5
+Recognition/Models/ResNet/Model/resnet50V2--epoch45.h5
+Recognition/Models/ResNet/Model/resnet50V2--epoch48.h5
+
+Recognition/Models/AlexNet/Model/alexnet--epoch34.h5
+Recognition/Models/AlexNet/Model/alexnet--epoch33.h5
+Recognition/Models/AlexNet/Model/alexnet--epoch32.h5

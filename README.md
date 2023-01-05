@@ -74,6 +74,9 @@ echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' > $CONDA_PREFI
 pip install --upgrade pip
 
 pip install tensorflow
+
+conda install -c conda-forge pycuda
+python3 -m pip install --upgrade tensorrt
 ```
 
 Verify the Install using command:
@@ -93,12 +96,6 @@ conda create --name <env_name> python=3.10.6
 ```
 
 Run the following commands in you conda environment.
-
-```bash
-conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.6 -c pytorch -c conda-forge
-```
-
-#### **OR**
 
 ```bash
 conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia

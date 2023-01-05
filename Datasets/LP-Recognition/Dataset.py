@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import division
 
-from object_detection.utils import dataset_util
+# from object_detection.utils import dataset_util
 from collections import namedtuple
 import xml.etree.ElementTree as ET
 
@@ -163,6 +163,64 @@ def generate_csv_file(xml_path: str, save_path: str, filename: str):
     new_df.to_csv(save, index=0)
 
 
+
+
+
+def split_data_images(training_percent: float = 0.8):
+    xml_files = list()
+    img_files = list()
+
+    file_pattern = r"\.JPG|\.png|\.PNG|\.jpg|\.xml"
+
+    for file in os.listdir(Data_directory):
+        if re.search(pattern=file_pattern, string=file):
+            if (file[-4:] == ".JPG" or file[-4:] == ".jpg" or file[-4:] == ".png" or file[-4:] == ".PNG"):
+                file_path = os.path.join(Data_directory, file)
+                img_files.append(file_path)
+
+            if file[-4:] == ".xml":
+                file_path = os.path.join(Data_directory, file)
+                xml_files.append(file_path)
+
+    data = {
+        "image-file": img_files,
+        "xml-file": xml_files,
+    }
+    df = pd.DataFrame(data=data)
+
+    num_rows, _ = df.shape
+    num_training = round(training_percent * num_rows)
+
+    training_df: pd.DataFrame = df.iloc[:num_training, :]
+    train_directory = os.path.join(work_dir, "train")
+    for _, row in training_df.iterrows():
+        shutil.move(row['image-file'], train_directory)
+        shutil.move(row['xml-file'], train_directory)
+
+    testing_df: pd.DataFrame = df.iloc[num_training:, :]
+    test_directory = os.path.join(work_dir, "test")
+    for _, row in testing_df.iterrows():
+        shutil.move(row['image-file'], test_directory)
+        shutil.move(row['xml-file'], test_directory)
+
+
+if __name__ == "__main__":
+    df: pd.DataFrame = read_xml_format(Data_directory)
+
+    # split_data_images(training_percent=0.9)
+
+    generate_csv_file(Train_directory, work_dir, "Train")
+    generate_csv_file(Test_directory, work_dir, "Test")
+
+    train_csv = os.path.join(work_dir, "Train.csv")
+    test_csv = os.path.join(work_dir, "Test.csv")
+
+    # generate_tf_record(Train_directory, train_csv, work_dir, "Train")
+    # generate_tf_record(Test_directory, test_csv, work_dir, "Test")
+
+
+
+'''
 def generate_tf_record(imgs_path: str, csv_path: str, output_path: str, filename_: str):
     """generate_tf_record This function generates a tfrecord file containing the
     bounding boxes for each object
@@ -224,56 +282,4 @@ def generate_tf_record(imgs_path: str, csv_path: str, output_path: str, filename
         }))
         writer.write(tf_example.SerializeToString())
     writer.close()
-
-
-def split_data_images(training_percent: float = 0.8):
-    xml_files = list()
-    img_files = list()
-
-    file_pattern = r"\.JPG|\.png|\.PNG|\.jpg|\.xml"
-
-    for file in os.listdir(Data_directory):
-        if re.search(pattern=file_pattern, string=file):
-            if (file[-4:] == ".JPG" or file[-4:] == ".jpg" or file[-4:] == ".png" or file[-4:] == ".PNG"):
-                file_path = os.path.join(Data_directory, file)
-                img_files.append(file_path)
-
-            if file[-4:] == ".xml":
-                file_path = os.path.join(Data_directory, file)
-                xml_files.append(file_path)
-
-    data = {
-        "image-file": img_files,
-        "xml-file": xml_files,
-    }
-    df = pd.DataFrame(data=data)
-
-    num_rows, _ = df.shape
-    num_training = round(training_percent * num_rows)
-
-    training_df: pd.DataFrame = df.iloc[:num_training, :]
-    train_directory = os.path.join(work_dir, "train")
-    for _, row in training_df.iterrows():
-        shutil.move(row['image-file'], train_directory)
-        shutil.move(row['xml-file'], train_directory)
-
-    testing_df: pd.DataFrame = df.iloc[num_training:, :]
-    test_directory = os.path.join(work_dir, "test")
-    for _, row in testing_df.iterrows():
-        shutil.move(row['image-file'], test_directory)
-        shutil.move(row['xml-file'], test_directory)
-
-
-if __name__ == "__main__":
-    df: pd.DataFrame = read_xml_format(Data_directory)
-
-    # split_data_images(training_percent=0.9)
-
-    generate_csv_file(Train_directory, work_dir, "Train")
-    generate_csv_file(Test_directory, work_dir, "Test")
-
-    train_csv = os.path.join(work_dir, "Train.csv")
-    test_csv = os.path.join(work_dir, "Test.csv")
-
-    generate_tf_record(Train_directory, train_csv, work_dir, "Train")
-    generate_tf_record(Test_directory, test_csv, work_dir, "Test")
+'''

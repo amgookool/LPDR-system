@@ -8,4 +8,5 @@ matplotlib
 scipy
 onnxmltools
 tf2onnx
+object-detection
 # scikit-learn

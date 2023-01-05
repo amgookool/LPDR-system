@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import division
 
-from object_detection.utils import dataset_util
+# from object_detection.utils import dataset_util
 from collections import namedtuple
 import xml.etree.ElementTree as ET
 
@@ -210,69 +210,6 @@ def generate_csv_file(xml_path: str, save_path: str, filename: str):
     new_df.to_csv(save, index=0)
 
 
-def generate_tf_record(imgs_path: str, csv_path: str, output_path: str, filename_: str):
-    """generate_tf_record This function generates a tfrecord file containing the
-    bounding boxes for each object
-    """
-    record_filename = os.path.join(output_path,  filename_ + ".record")
-
-    writer = tf.io.TFRecordWriter(record_filename)
-
-    def class_text_to_int(row_label):
-        if row_label == "License-Plate" or row_label == "Character":
-            return 1
-
-    def split(df: pd.DataFrame, group):
-        data = namedtuple('data', ['filename', 'object'])
-        gb = df.groupby(group)
-        return [data(filename, gb.get_group(x)) for filename, x in zip(gb.groups.keys(), gb.groups)]
-
-    group = split(pd.read_csv(csv_path), "filename")
-
-    for g in group:
-        with tf.io.gfile.GFile(os.path.join(imgs_path, '{}'.format(g.filename)), 'rb') as fid:
-            encoded_jpg = fid.read()
-        encoded_jpg_io = io.BytesIO(encoded_jpg)
-        image = Image.open(encoded_jpg_io)
-
-        width, height = image.size
-        filename = g.filename.encode('utf8')
-
-        image_format = b'jpg'
-        xmins = []
-        xmaxs = []
-        ymins = []
-        ymaxs = []
-        classes = []
-        classes_text = []
-
-        for _, row in g.object.iterrows():
-            xmins.append(row["xmin"] / width)
-            xmaxs.append(row["xmax"]/width)
-            ymins.append(row["ymin"]/height)
-            ymaxs.append(row["ymax"]/height)
-            classes.append(class_text_to_int(row["classname"]))
-            encoded_class_text = row["classname"].encode("utf-8")
-            classes_text.append(encoded_class_text)
-
-        tf_example = tf.train.Example(features=tf.train.Features(feature={
-            'image/height': dataset_util.int64_feature(height),
-            'image/width': dataset_util.int64_feature(width),
-            'image/filename': dataset_util.bytes_feature(filename),
-            'image/source_id': dataset_util.bytes_feature(filename),
-            'image/encoded': dataset_util.bytes_feature(encoded_jpg),
-            'image/format': dataset_util.bytes_feature(image_format),
-            'image/object/bbox/xmin': dataset_util.float_list_feature(xmins),
-            'image/object/bbox/xmax': dataset_util.float_list_feature(xmaxs),
-            'image/object/bbox/ymin': dataset_util.float_list_feature(ymins),
-            'image/object/bbox/ymax': dataset_util.float_list_feature(ymaxs),
-            'image/object/class/text': dataset_util.bytes_list_feature(classes_text),
-            'image/object/class/label': dataset_util.int64_list_feature(classes),
-        }))
-        writer.write(tf_example.SerializeToString())
-    writer.close()
-
-
 def split_data_images(training_percent: float = 0.8):
     txt_files = list()
     xml_files = list()
@@ -323,15 +260,16 @@ if __name__ == "__main__":
     df: pd.DataFrame = YOLO_txt_format(Data_directory)
 
     # split_data_images(training_percent=0.9)
+    print(df.head(5))
 
-    generate_csv_file(Train_directory, work_dir, "Train")
-    generate_csv_file(Test_directory, work_dir, "Test")
+    # generate_csv_file(Train_directory, work_dir, "Train")
+    # generate_csv_file(Test_directory, work_dir, "Test")
 
-    train_csv = os.path.join(work_dir, "Train.csv")
-    test_csv = os.path.join(work_dir, "Test.csv")
+    # train_csv = os.path.join(work_dir, "Train.csv")
+    # test_csv = os.path.join(work_dir, "Test.csv")
 
-    generate_tf_record(Train_directory, train_csv, work_dir, "Train")
-    generate_tf_record(Test_directory, test_csv, work_dir, "Test")
+    # generate_tf_record(Train_directory, train_csv, work_dir, "Train")
+    # generate_tf_record(Test_directory, test_csv, work_dir, "Test")
 
 
 # def image_bbox_resize(
@@ -362,3 +300,68 @@ if __name__ == "__main__":
 
 #         label_data.append(n_labels)
 #     return {"Image-Data": image_data, "Label-Data": label_data}
+
+
+
+
+# def generate_tf_record(imgs_path: str, csv_path: str, output_path: str, filename_: str):
+    #     """generate_tf_record This function generates a tfrecord file containing the
+    #     bounding boxes for each object
+    #     """
+    #     record_filename = os.path.join(output_path,  filename_ + ".record")
+
+    #     writer = tf.io.TFRecordWriter(record_filename)
+
+    #     def class_text_to_int(row_label):
+    #         if row_label == "License-Plate" or row_label == "Character":
+    #             return 1
+
+    #     def split(df: pd.DataFrame, group):
+    #         data = namedtuple('data', ['filename', 'object'])
+    #         gb = df.groupby(group)
+    #         return [data(filename, gb.get_group(x)) for filename, x in zip(gb.groups.keys(), gb.groups)]
+
+    #     group = split(pd.read_csv(csv_path), "filename")
+
+    #     for g in group:
+    #         with tf.io.gfile.GFile(os.path.join(imgs_path, '{}'.format(g.filename)), 'rb') as fid:
+    #             encoded_jpg = fid.read()
+    #         encoded_jpg_io = io.BytesIO(encoded_jpg)
+    #         image = Image.open(encoded_jpg_io)
+
+    #         width, height = image.size
+    #         filename = g.filename.encode('utf8')
+
+    #         image_format = b'jpg'
+    #         xmins = []
+    #         xmaxs = []
+    #         ymins = []
+    #         ymaxs = []
+    #         classes = []
+    #         classes_text = []
+
+    #         for _, row in g.object.iterrows():
+    #             xmins.append(row["xmin"] / width)
+    #             xmaxs.append(row["xmax"]/width)
+    #             ymins.append(row["ymin"]/height)
+    #             ymaxs.append(row["ymax"]/height)
+    #             classes.append(class_text_to_int(row["classname"]))
+    #             encoded_class_text = row["classname"].encode("utf-8")
+    #             classes_text.append(encoded_class_text)
+
+    #         tf_example = tf.train.Example(features=tf.train.Features(feature={
+    #             'image/height': dataset_util.int64_feature(height),
+    #             'image/width': dataset_util.int64_feature(width),
+    #             'image/filename': dataset_util.bytes_feature(filename),
+    #             'image/source_id': dataset_util.bytes_feature(filename),
+    #             'image/encoded': dataset_util.bytes_feature(encoded_jpg),
+    #             'image/format': dataset_util.bytes_feature(image_format),
+    #             'image/object/bbox/xmin': dataset_util.float_list_feature(xmins),
+    #             'image/object/bbox/xmax': dataset_util.float_list_feature(xmaxs),
+    #             'image/object/bbox/ymin': dataset_util.float_list_feature(ymins),
+    #             'image/object/bbox/ymax': dataset_util.float_list_feature(ymaxs),
+    #             'image/object/class/text': dataset_util.bytes_list_feature(classes_text),
+    #             'image/object/class/label': dataset_util.int64_list_feature(classes),
+    #         }))
+    #         writer.write(tf_example.SerializeToString())
+    #     writer.close()
