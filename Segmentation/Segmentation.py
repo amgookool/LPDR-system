@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 import cv2
 
+
 def display_execution_time(start,end):
     print("Execution Time: {:.3f} seconds".format(end-start))
 
@@ -60,7 +61,7 @@ class SEGMENT_ALGO:
         threshold = cv2.adaptiveThreshold(blurred_img,255,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,45,15)
         gpu_img.upload(threshold)
         binary_img : np.ndarray = gpu_img.download()
-        show_image(binary_img,"Binary-IMage")
+        show_image(binary_img,"Binary-Image")
         
         # Upper and Lower Bound Criteria (amount of connected pixels) that makes up a character
         # Need to find out how many white pixels (character blob) makes up a character
@@ -116,26 +117,27 @@ class SEGMENT_ALGO:
         contours = sorted(contours, key= cmp_to_key(contour_sort))
         print("Segmentation: Number of contours = {0}".format(len(contours)))
         lp_characters = list()
+        target_height, target_width = 128,128
         for idx,ct in enumerate(contours):
             x,y,w,h = cv2.boundingRect(ct)
-            roi :np.ndarray = mask[y:y + h, x:x + w]
-            # roi0 = roi
-            # roi1 = roi
-            # roi2 = roi
-            # char_3d = np.stack((roi0,roi1,roi2),axis=2)
-            # print(char_3d.shape)
-            # show_image(img_data=char_3d,name=f"Character{idx}")
-            roi_list = [ roi for i in range(3)]
-            print(roi_list)
-            break
-            lp_characters.append(roi)
+            roi = mask[y:y + h, x:x + w]
+            gpu_img.upload(cv2.bitwise_not(roi))
+            roi = gpu_img.download()
+            rows,cols = roi.shape
+            padY = (target_height - rows) // 2 if rows < target_height else int(0.17 * rows)
+            padX = (target_width - cols) // 2 if cols < target_width else int(0.45 * cols)
+            boarder = cv2.copyMakeBorder(roi, padY,padY,padX,padX,cv2.BORDER_CONSTANT,None,255)
+            gpu_img.upload(boarder)
+            char = gpu_img.download()
+            gpu_img.upload(cv2.cvtColor(char,cv2.COLOR_GRAY2RGB))
+            char_rgb = gpu_img.download()
+            lp_characters.append(char_rgb)
+            show_image(img_data=char_rgb,name=f"Character{idx}")
 
         print("Segmentation: Completed Segmentation")
         end = time()
         display_execution_time(start,end)
         
-        # for i, char in enumerate(lp_characters):
-        #     show_image(img_data=char,name=f"Character {i+1}")
         
         close_all_windows()
         return lp_characters
@@ -143,7 +145,6 @@ class SEGMENT_ALGO:
 
 if __name__ == "__main__":
     algo = SEGMENT_ALGO()
-    img = cv2.imread("Segmentation/LP-1.JPG",cv2.IMREAD_COLOR)
+    img = cv2.imread("Segmentation/LP-6.JPG",cv2.IMREAD_COLOR)
     chars = algo.process(img_data=img)
-    # show_image(img,"Original Image")
     

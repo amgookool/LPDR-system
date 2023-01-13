@@ -13,9 +13,10 @@ import numpy as np
 import pandas as pd
 
 from keras.applications import resnet_v2
+from keras.applications import efficientnet_v2
 from keras.models import Model
 
-# os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 
 # dataset_path = os.path.join("Recognition","English","Fnt")
 # model_path = os.path.join("Recognition","Model")
@@ -97,10 +98,23 @@ class RECOG_ALGO:
             model.compile(loss = 'categorical_crossentropy', optimizer = 'adam', metrics = ['accuracy'])
             model.summary()
             return model
+    
+    class EfficientNet:
+        def __init__(self,num_classes, input_shape) -> None:
+            self.num_classes = num_classes
+            self.input_shape = input_shape
+            self.model_path = os.path.join("Recognition","Models","EfficientNet","Model")
         
+        def algorithm(self):
+            model = efficientnet_v2.EfficientNetV2B0(include_top=True, weights=None,input_shape=self.input_shape,classes=self.num_classes)
+            model.compile(loss = 'categorical_crossentropy', optimizer = 'adam', metrics = ['accuracy'])
+            model.summary()
+            return model
+       
     dataset_path = os.path.join("Recognition","Chars-Dataset","Fnt")
     alexnet_model_path = os.path.join("Recognition","Models","AlexNet")
     resnet_model_path = os.path.join("Recognition","Models","ResNet")
+    efficientNet_model_path = os.path.join("Recognition","Models","EfficientNet")
     
     def train(self,model_name:str,epochs:int, height:int=128, width:int=128,depth:int=3, batch_size:int=128):
         directory = self.dataset_path
@@ -139,6 +153,14 @@ class RECOG_ALGO:
             # checkpoint_file = os.path.join(checkpoint_path,"model--{epoch:02d}--{val_acc:.2f}.h5")
             csv_logger_file = os.path.join(self.resnet_model_path,"training_logs.csv")
             model = self.RESNET(num_classes=num_classes, input_shape=input_shape).algorithm()
+        
+        if "efficientnet" in model_name:
+            checkpoint_path = os.path.join(self.efficientNet_model_path,"Checkpoints")
+            logs_paths = os.path.join(self.efficientNet_model_path,"Logs")
+            checkpoint_file = os.path.join(checkpoint_path,"model--epoch{epoch:02d}.h5")
+            # checkpoint_file = os.path.join(checkpoint_path,"model--{epoch:02d}--{val_acc:.2f}.h5")
+            csv_logger_file = os.path.join(self.efficientNet_model_path,"training_logs.csv")
+            model = self.EfficientNet(num_classes=num_classes, input_shape=input_shape).algorithm()
             
         with tf.device('/device:GPU:0'):
             # Setup Callbacks for Checkpoint epochs
@@ -146,7 +168,7 @@ class RECOG_ALGO:
                 filepath=checkpoint_file,
                 monitor= 'val_accuracy',#'val_loss', 
                 verbose=1,
-                save_best_only=False,
+                save_best_only=True,
                 mode='auto'
             )
 
@@ -154,7 +176,7 @@ class RECOG_ALGO:
             reduce_lr = ReduceLROnPlateau(
                 monitor='loss', 
                 factor=0.2,
-                patience=3, 
+                patience=10, 
                 min_lr=0.001
             )
             
@@ -162,7 +184,7 @@ class RECOG_ALGO:
             stop_callback = EarlyStopping(
                 monitor='val_loss',
                 verbose=1,
-                patience=30
+                patience=50
             )
             
             # Setup for TensorBoard Visualizations
@@ -194,15 +216,15 @@ class RECOG_ALGO:
         
         if "alexnet" in model_name:
             model_path = os.path.join(self.ALEXNET(None,None).model_path,model_name)
-        else:
+        elif "resnet" in model_name:
             model_path = os.path.join(self.RESNET(None,None).model_path,model_name)
+        else:
+            model_path = os.path.join(self.EfficientNet(None,None).model_path,model_name)
         
         width,height,depth = 128,128,3
-        # img_src = cv2.imread(image) 
         gpu_img = cv2.cuda_GpuMat()
         gpu_img.upload(image)
-         
-        # src = cv2.resize(img_src,(width,height))
+        
         gpu_img = cv2.cuda.resize(gpu_img,(width,height))
         src = gpu_img.download()
         
@@ -210,66 +232,54 @@ class RECOG_ALGO:
         src = img_to_array(src)
         src = np.expand_dims(src, axis=0)
         
-        print(src)
-        
         with tf.device('/device:GPU:0'):
             model = load_model(model_path, compile=False)
             # Get all prediction confidences for every class
             predictions = model.predict(src)
             
-        #     def generate_predictions_df():
-        #         """This function generates a csv file of the predictions made by the model.
-        #                 Two files are created:
-        #                     - test.csv: Contains all the predictions of all the classes
-        #                     - test_top3.csv: Contains  the top 3 predictions of the classes.
-        #         """
-        #         predictions_df = pd.DataFrame(predictions)
-        #         predictions_df = predictions_df.T 
-        #         predictions_df = predictions_df.rename(columns={0:"Confidence"})    
-        #         predictions_df = predictions_df.assign(Character=chars)
+            def generate_predictions_df():
+                """This function generates a csv file of the predictions made by the model.
+                        Two files are created:
+                            - test.csv: Contains all the predictions of all the classes
+                            - test_top3.csv: Contains  the top 3 predictions of the classes.
+                """
+                predictions_df = pd.DataFrame(predictions)
+                predictions_df = predictions_df.T 
+                predictions_df = predictions_df.rename(columns={0:"Confidence"})    
+                predictions_df = predictions_df.assign(Character=chars)
                 
-        #         predictions_df["Confidence"] = predictions_df["Confidence"].multiply(100)
+                predictions_df["Confidence"] = predictions_df["Confidence"].multiply(100)
                 
-        #         top_predictions = predictions_df.nlargest(n=5, columns="Confidence")
-        #         top_predictions.to_csv(os.path.join("Recognition","test.csv"))
+                top_predictions = predictions_df.nlargest(n=5, columns="Confidence")
+                top_predictions.to_csv(os.path.join("Recognition","test.csv"))
             
-        #     if generate_csv:
-        #         generate_predictions_df()
+            if generate_csv:
+                generate_predictions_df()
             
-        #     predictions_df = pd.DataFrame(predictions).T
-        #     predictions_df = predictions_df.rename(columns={0:"Confidence"}).assign(Character=chars)    
-        #     predictions_df = predictions_df.sort_values(by=['Confidence'], ascending=False)
-        #     prediction_dict : dict = predictions_df.to_dict()
+            predictions_df = pd.DataFrame(predictions).T
+            predictions_df = predictions_df.rename(columns={0:"Confidence"}).assign(Character=chars)    
+            predictions_df = predictions_df.sort_values(by=['Confidence'], ascending=False)
+            prediction_dict : dict = predictions_df.to_dict()
             
-        #     for char_idx in prediction_dict.get('Confidence'):
-        #         confidence_score = prediction_dict['Confidence'].get(char_idx)
-        #         if confidence_score >= 0.80:
-        #             char = prediction_dict['Character'].get(char_idx) 
-        #             return char
-        #         else:
-        #             continue
-            
-            # idx = np.argsort(predictions[0])
-            # print(idx)
-            # char = chars[idx]
-            # print(char)
-
-            
-            # Get the top (highest confidence) prediction
-            # prediction = predictions[0]
-            # idx = np.argsort(prediction)[-1] # get the top prediction index
-            # character_prediction = chars[idx]
-        # return character_prediction
+            for char_idx in prediction_dict.get('Confidence'):
+                confidence_score = prediction_dict['Confidence'].get(char_idx)
+                if confidence_score >= 0.95:
+                    char = prediction_dict['Character'].get(char_idx) 
+                    return char
+                else:
+                    continue
 
 # if __name__ == "__main__":
-    # from time import time
-    # start = time()
-    # recognition_ai = RECOG_ALGO()
-    # # recognition_ai.train(model_name="alexnet",epochs=50)
-    # # recognition_ai.train(model_name="resnet",epochs=50,batch_size=32)
-    # # char = recognition_ai.inference(image="Recognition/test1.png",model_name="resnet50V2--epoch48.h5")
-    # char = recognition_ai.inference(image="Recognition/test1.png",model_name="alexnet--epoch33.h5",generate_csv=False)
-    # print(char)
+#     from time import time
+#     start = time()
+#     recognition_ai = RECOG_ALGO()
+#     # recognition_ai.train(model_name="alexnet",epochs=100)
+#     # recognition_ai.train(model_name="resnet",epochs=100)
+#     # recognition_ai.train(model_name="efficientnet",epochs=100)
+#     img = cv2.imread("Recognition/test1.png")
+#     # char = recognition_ai.inference(image=img,model_name="resnet50V2--epoch48.h5")
+#     char = recognition_ai.inference(image=img,model_name="alexnet--epoch25.h5",generate_csv=False)
+#     print(char)
     # end = time()
     # execution_time = end - start
     # print(f"Time = {execution_time} seconds")

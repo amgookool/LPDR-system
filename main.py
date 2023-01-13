@@ -3,7 +3,9 @@ from Segmentation import SEGMENT_ALGO
 from Recognition import RECOG_ALGO
 import cv2, sys
 import argparse
+import os
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' 
 
 parser = argparse.ArgumentParser(description="Choosing the type of source (image/video) for system.")
 parser.add_argument('-i',"--image", type=str,required=False,metavar="",help="The path to the image you want to run a prediction.")
@@ -30,12 +32,14 @@ if __name__ =="__main__":
         for plate in lps:
             chars_list = segmentation_model.process(plate)
             for char in chars_list:
-                char = recognition_model.inference(image=char,model_name="alexnet--epoch34.h5")
-        #         if char is None:
-        #             continue
-        #         else:
-        #             lp_text.join(char)
-        # print(lp_text)
+                char = recognition_model.inference(image=char,model_name="alexnet--epoch25.h5")
+                if char is None:
+                    continue
+                else:
+                    lp_text += char
+                del char
+        
+        print(lp_text)
             
             
     
