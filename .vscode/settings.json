@@ -1,8 +1,22 @@
 {
     "cSpell.words": [
+        "ddepth",
+        "dtype",
+        "easyocr",
+        "finfo",
+        "FULLSCREEN",
+        "hiers",
+        "imread",
         "imshow",
         "imwrite",
+        "KEEPRATIO",
+        "lboundary",
         "LPDR",
-        "ndarray"
+        "LPDRV",
+        "ndarray",
+        "OTSU",
+        "readtext",
+        "recog",
+        "uboundary"
     ]
 }
