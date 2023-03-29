@@ -1,1 +1,1 @@
-from Recognition.Recognition import *
+from Recognition.Recognition import OCR_READER
