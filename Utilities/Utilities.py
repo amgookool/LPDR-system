@@ -1,44 +1,37 @@
-import os
 import cv2
 import numpy as np
 
 
-def module_wd(working_directory: str):
-    """module_wd This functions is used for development purposes.This would make whatever code directory you are working in the current working directory during runtime.
-
-    Args:
-        working_directory (str): This is the path to the directory you want to set as the current working directory. The path is relative to the parent directory which has the main.py file.
-    """
-
-    project_folder = "LPDR-system"
-    index_project_folder = str(os.getcwd()).find(
-        project_folder) + len(project_folder)
-    project_directory = str(os.getcwd())[0:index_project_folder]
-    ret = os.chdir(project_directory)
-    ret = os.chdir(working_directory)
-    return ret
+def show_image(img_data: np.ndarray, name: str):
+    # cv2.WINDOW_NORMAL, cv2.WINDOW_AUTOSIZE, cv2.WINDOW_GUI_NORMAL, cv2.WINDOW_FULLSCREEN, cv2.WINDOW_KEEPRATIO, cv2.WINDOW_GUI_EXPANDED
+    cv2.namedWindow(name, cv2.WINDOW_NORMAL)
+    cv2.imshow(name, img_data)
+    if cv2.waitKey(0) & 0xFF == ord("q"):
+        cv2.destroyWindow(name)
 
 
-def sharpen_image(file_path: str, output_directory: str) -> np.ndarray:
-    """sharpen_image This function is used to apply sharpening processing to an image.
+def show_video(frame: np.ndarray, name: str):
+    cv2.namedWindow(name, cv2.WINDOW_NORMAL)
+    cv2.imshow(name, frame)
+    if cv2.waitKey(10) & 0xFF == ord("q"):
+        return False
 
-    Args:
-        file (str): image file. This can be a jpg or png file.
-        output_directory (str): The directory where the sharpened image will be saved.
 
-    Returns:
-        _type_: None
-    """
-    filename = file_path[-5:]
-    image = cv2.imread(file_path, flags=cv2.IMREAD_COLOR)
-    kernel = np.array([[0, -1, 0],
-                       [-1, 5, -1],
-                       [0, -1, 0]])
-    sharpen_image = cv2.filter2D(src=image, ddepth=-1, kernel=kernel)
-    save_image = input("Do you want to save the sharpened image? (y/n): ")
-    if save_image == "y":
-        write_file = f"Sharpen-{filename}"
-        cv2.imwrite(f"{output_directory}\\{write_file}", sharpen_image)
-    else:
-        print("Image not saved.")
-    return sharpen_image
+def draw_box(img_data: np.ndarray, x: int, y: int, w: int, h: int, color: tuple = (0, 0, 0)) -> np.ndarray:
+    cv2.rectangle(img_data, (x, y), (x+w, y+h), color, 2)
+    return img_data
+
+
+def put_text(img_data: np.ndarray, text: str, x: int, y: int, font=cv2.FONT_HERSHEY_DUPLEX, color: tuple = (255, 255, 255), bg_color: tuple = (0, 0, 0), size: float = 0.55, thickness: int = 1) -> np.ndarray:
+    text_size, _ = cv2.getTextSize(text, font, size, thickness)
+    texW, texH = text_size
+    cv2.rectangle(img_data, (x, y), (x + texW, y - texH), bg_color, -1)
+    cv2.putText(img_data, text, org=(x, y), fontFace=font,
+                fontScale=size, color=color, thickness=thickness)
+    return img_data
+
+
+def calculate_fps(prevFrame, newFrame):
+    fps = int(1/(newFrame - prevFrame))
+    prevFrame = newFrame
+    return fps, prevFrame
