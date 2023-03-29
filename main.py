@@ -12,7 +12,7 @@ parser.add_argument('-v',"--video", type=str,required=False,metavar="",help="The
 parser.add_argument('-u',"--url", type=str, required=False,metavar="",help="The URL of your live video feed/stream.")
 args = parser.parse_args()
 
-device="CPU"
+device="GPU"
 detection_algo = YOLO_ALGO(device=device)
 recog_algo = OCR_READER(device=device)
 
